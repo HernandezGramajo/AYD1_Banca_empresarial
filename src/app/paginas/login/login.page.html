@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar color = "warning">
+    <ion-title size="large" color = "dark" >Inicio de sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<br>
+<br>
+<br>
+<br>
+  <div class ="centrado">
+    <ion-label>Usuario</ion-label>
+    <ion-input  clear-input type="email" placeholder="Correo"  [(ngModel)]="user"></ion-input>
+  </div>
+  <br>
+  <br>
+    <div class ="centrado">
+    <ion-label>Contraseña</ion-label>
+    <ion-input  clear-input type="password" placeholder="Contraseña" [(ngModel)]="password"></ion-input>
+  </div>
+  <br>
+
+  <br>
+  <div class ="centrado">
+    <ion-button color="warning"  (click)="presentLoading()">Login</ion-button>
+  </div>
+
+ 
+  
+
+</ion-content>
