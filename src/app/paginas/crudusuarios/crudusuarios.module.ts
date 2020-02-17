@@ -13,7 +13,7 @@ import { CrudusuariosPage } from './crudusuarios.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    CrudusuariosPageRoutingModule
+    CrudusuariosPageRoutingModule,
   ],
   declarations: [CrudusuariosPage]
 })

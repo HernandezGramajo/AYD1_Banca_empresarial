@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Usuarios } from '../../modelos/usuarios';
+import { ApiService } from '../../servicios/api.service';
 
 @Component({
   selector: 'app-crudusuarios',
@@ -7,18 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CrudusuariosPage implements OnInit {
 
-  private codigoEmpleado : CrudusuariosPage
-  private codigo : CrudusuariosPage
-  private usuario : CrudusuariosPage
-  private nombre : CrudusuariosPage
-  private apellido : CrudusuariosPage
-  private password : CrudusuariosPage
-  private email : CrudusuariosPage
-  private tipo : CrudusuariosPage
+  data : Usuarios;
+
+  private codigoEmpleado : String
+  private tipo : String
 
   private mensajeDeError : String
 
-  constructor() { }
+  constructor(
+    private apiService : ApiService,
+  ) { 
+    this.data = new Usuarios();
+  }
 
   ngOnInit() {
   }
@@ -36,6 +38,12 @@ export class CrudusuariosPage implements OnInit {
     //Crear usuario
     //Error si ya existe o no puede ser creado
     this.popUpMensaje('Creando Usuario');
+    this.data.active = 1;
+    if( this.tipo == "Empleado")
+      this.data.type = 2;
+    if( this.tipo == "Administrador")
+      this.data.type = 1;
+    this.apiService.createItem(this.data).subscribe();
   }
 
   modifyUsuario(){
