@@ -9,12 +9,14 @@ import { ApiService } from '../../servicios/api.service';
 })
 export class CrudusuariosPage implements OnInit {
 
-  data : Usuarios;
+  private dataUsuarios : any;
+  private data : Usuarios;
 
-  private codigoEmpleado : String
+  private codigoEmpleado : Number
   private tipo : String
 
   private mensajeDeError : String
+  private activo : Boolean
 
   constructor(
     private apiService : ApiService,
@@ -23,15 +25,27 @@ export class CrudusuariosPage implements OnInit {
   }
 
   ngOnInit() {
+    this.loadUsuarios();
   }
 
   loadUsuarios(){
     //Cargar de la API  todos los usuarios en el Select de Usuarios
+    this.apiService.getAll().subscribe( response => {
+      this.dataUsuarios = response;
+    })
   }
 
   getData(){
     //Cargar de la API la informacion de un usuario en particular
-    this.popUpMensaje('Cargando Usuario: '+this.codigoEmpleado);
+    //this.popUpMensaje('Cargando Usuario: '+this.codigoEmpleado);
+    this.apiService.getItem(this.codigoEmpleado).subscribe( response => {
+      if(response.type != 0)
+        this.data = response;
+        if(response.active == 0)
+          this.activo = false
+        else
+          this.activo = true
+    });
   }
 
   createUsuario(){
@@ -50,12 +64,27 @@ export class CrudusuariosPage implements OnInit {
     //Modificar usuario seleccionado
     //Error si no se ha cargado uno
     this.popUpMensaje('Modificando Usuario');
+    if( this.tipo == "Empleado")
+      this.data.type = 2;
+    if( this.tipo == "Administrador")
+      this.data.type = 1;
+    this.apiService.updateItem(this.data.id,this.data).subscribe();
   }
 
   deleteUsuario(){
     //Dar de baja a usuario
     //Error si no se ha cargado uno
     this.popUpMensaje('Dando de Baja a Usuario');
+    this.data.active = 0;
+    this.apiService.updateItem(this.data.id,this.data).subscribe();
+  }
+
+  reactivateUsuario(){
+    //reactivar usuario
+    //Error si no se ha cargado uno
+    this.popUpMensaje('Reactivando Usuario');
+    this.data.active = 1;
+    this.apiService.updateItem(this.data.id,this.data).subscribe();
   }
 
   checkFields(mensajeDeError){

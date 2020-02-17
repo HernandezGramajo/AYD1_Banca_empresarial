@@ -35,9 +35,27 @@ export class ApiService {
     );
   };
 
+  getAll() : Observable<Usuarios>{
+    return this.http
+    .get<Usuarios>(this.base_path)
+    .pipe(/*retry(2),*/catchError(this.handleError)/**/)
+  }
+
+  getItem(itemID) : Observable<Usuarios>{
+    return this.http
+    .get<Usuarios>(this.base_path+"/"+itemID)
+    .pipe(/*retry(2),*/catchError(this.handleError)/**/)
+  }
+
   createItem(item): Observable<Usuarios>{
     return this.http
     .post<Usuarios>(this.base_path, JSON.stringify(item), this.httpOptions)
+    .pipe(/*retry(2),*/catchError(this.handleError)/**/)
+  }
+
+  updateItem(itemID, item) : Observable<Usuarios>{
+    return this.http
+    .put<Usuarios>(this.base_path+"/"+itemID, JSON.stringify(item),this.httpOptions)
     .pipe(/*retry(2),*/catchError(this.handleError)/**/)
   }
 }
