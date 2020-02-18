@@ -44,23 +44,10 @@ private user : LoginPage;
                 if(json[0].active=="0"){ // usuario inanctivo
                   this.error ="El usuario no se encuentra activo";
                 }else{
-               
-                if(json[0].type=="0"){ // super admin o raiz
-                   this.error="";
-                 
-                  this.navCtrl.navigateForward(["/crudusuarios",json[0].id,json[0].user_name,json[0].type]);
-                
-                }else if(json[0].type=="1"){ // admin
-                  this.error="";
-                
-                  this.navCtrl.navigateForward(["/crudusuarios",json[0].id,json[0].user_name,json[0].type]);
-              
-                }else{ // empleado
-                  
-                  this.error="";
-                  //this.navCtrl.navigateForward(["/crudusuarios",json[0].id,json[0].user_name,json[0].type]);
 
-                }
+                  this.error="";
+                  //MUTZ reivsa aqui
+                  this.navCtrl.navigateForward(["/staff",json[0].id,json[0].user_name,json[0].type]);
                 
               }
       

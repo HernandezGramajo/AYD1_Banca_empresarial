@@ -16,7 +16,10 @@ const routes: Routes = [
     path: 'info-usuario/:id/:user/:type',
     loadChildren: () => import('./paginas/info-usuario/info-usuario.module').then( m => m.InfoUsuarioPageModule)
   },
-
+  {
+    path: 'staff/:id/:user/:type',
+    loadChildren: () => import('./paginas/staff/staff.module').then( m => m.StaffPageModule)
+  },
 
 ];
 
@@ -27,3 +30,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
