@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {NavController} from 'ionic-angular';
+
+import fetch from 'node-fetch';
+
 
 @Component({
   selector: 'app-login',
@@ -23,8 +27,35 @@ private user : LoginPage
     console.log(this.user);
     
     document.body.appendChild(loading);
-    
-   
+  
+    let  pass = this.password;
+    let d;
+    fetch('http://3.20.104.181:8099/api/usuarios?filter[where][user_name]='+this.user)
+    .then(res=> res.json())
+    .then(
+      
+         
+      function(json){
+      d=json;
+        if(json==""){ // si no exite el usuario y json no trae nada
+          console.log("no exite el usuario");
+        
+        }else{
+          if (json[0].password == pass){
+            console.log("si es igual");
+  
+          }else{
+  
+            console.log("no es igual");
+          
+          }
+        
+        }
+             
+       
+    });
+
+    console.log(d);
   }
   
 }
