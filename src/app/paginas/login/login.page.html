@@ -8,25 +8,29 @@
 <br>
 <br>
 <br>
-<ion-item>
+<ion-item class=" fields">
     <ion-label color="tertiary"   position="floating" > Usuario</ion-label>
     <ion-icon name="person" slot="end"></ion-icon>
     <ion-input clear-input type="text"  [(ngModel)]="user"></ion-input>
 </ion-item>
 <br>
 <br>
-<ion-item>
+<ion-item class=" fields">
   <ion-label   color="tertiary"  position="floating" > Contraseña</ion-label>
   <ion-icon name="eye-off" slot="end"></ion-icon>
   <ion-input clear-input type="password"  [(ngModel)]="password"></ion-input>
 </ion-item>
 <br>
-<br>
-<br>
-<br>
+
+<div class ="centrado">
+  {{
+    error
+  }}
+</div>
+
 <br>
   <div class ="centrado">
-    <ion-button  color="tertiary-shade"  (click)="presentLoading()">Login</ion-button>
+    <ion-button  color="dark"  (click)="presentLoading()">Login</ion-button>
   </div>
 
   
