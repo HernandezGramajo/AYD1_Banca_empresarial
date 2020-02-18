@@ -12,6 +12,11 @@ const routes: Routes = [
     path: 'crudusuarios/:id/:user/:type',
     loadChildren: () => import('./paginas/crudusuarios/crudusuarios.module').then( m => m.CrudusuariosPageModule)
   },
+  {
+    path: 'info-usuario/:id/:user/:type',
+    loadChildren: () => import('./paginas/info-usuario/info-usuario.module').then( m => m.InfoUsuarioPageModule)
+  },
+
 
 ];
 
