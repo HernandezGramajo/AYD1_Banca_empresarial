@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-staff',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StaffPage implements OnInit {
 
-  constructor() { }
+  id =null
+  user =null
+  type =null
+
+  constructor(private activeRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.id=this.activeRoute.snapshot.paramMap.get('id');
+    this.user=this.activeRoute.snapshot.paramMap.get('user');
+    this.type=this.activeRoute.snapshot.paramMap.get('type');
+    console.log(this.id,this.user,this.type);
   }
 
 }

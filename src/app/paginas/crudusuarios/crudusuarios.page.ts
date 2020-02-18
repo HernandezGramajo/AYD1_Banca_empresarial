@@ -23,6 +23,7 @@ export class CrudusuariosPage implements OnInit {
   id =null
   user =null
   type =null
+  
   constructor(private apiService : ApiService,private activeRoute: ActivatedRoute) { this.data = new Usuarios(); }
 
   ngOnInit() {
