@@ -8,6 +8,15 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () => import('./paginas/login/login.module').then( m => m.LoginPageModule)
   },
+  {
+    path: 'crudusuarios',
+    loadChildren: () => import('./paginas/crudusuarios/crudusuarios.module').then( m => m.CrudusuariosPageModule)
+  },
+  {
+    path: 'staff',
+    loadChildren: () => import('./paginas/staff/staff.module').then( m => m.StaffPageModule)
+  },
+
 ];
 
 @NgModule({
