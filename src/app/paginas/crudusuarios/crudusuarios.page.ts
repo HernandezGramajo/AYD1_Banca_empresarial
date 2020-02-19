@@ -14,11 +14,11 @@ export class CrudusuariosPage implements OnInit {
   private dataUsuarios : any;
   private data : Usuarios;
 
-  private codigoEmpleado : Number
-  private tipo : String
+  private codigoEmpleado : Number;
+  private tipo : String;
 
-  private mensajeDeError : String
-  private activo : Boolean
+  private error : Boolean;
+  private activo : Boolean;
 
   id =null
   user =null
@@ -58,12 +58,16 @@ export class CrudusuariosPage implements OnInit {
     //Crear usuario
     //Error si ya existe o no puede ser creado
     this.popUpMensaje('Creando Usuario');
-    this.data.active = 1;
-    if( this.tipo == "Empleado")
-      this.data.type = 2;
-    if( this.tipo == "Administrador")
-      this.data.type = 1;
-    this.apiService.createItem(this.data).subscribe();
+    this.error = false;
+    this.checkFields("");
+    if(this.error == false){
+      this.data.active = 1;
+      if( this.tipo == "Empleado")
+        this.data.type = 2;
+      if( this.tipo == "Administrador")
+        this.data.type = 1;
+      this.apiService.createItem(this.data).subscribe();
+    }
   }
 
   modifyUsuario(){
@@ -95,6 +99,11 @@ export class CrudusuariosPage implements OnInit {
 
   checkFields(mensajeDeError){
     //Anidar en mensajeDeError, todos los campos vacios
+    if(!this.data.id || this.data.id.toString().length == 0 || this.data.id != 0){
+      mensajeDeError = mensajeDeError + "ID vacio o debe ser 0.<br>";
+      this.error = true;
+      this.popUpMensaje(mensajeDeError);
+    }
   }
 
   popUpMensaje(mensaje){
