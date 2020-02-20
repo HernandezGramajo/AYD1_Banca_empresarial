@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController, } from '@ionic/angular';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
@@ -12,7 +13,7 @@ export class StaffPage implements OnInit {
   user =null
   type =null
 
-  constructor(private activeRoute: ActivatedRoute) { }
+  constructor(private activeRoute: ActivatedRoute, public navCtrl: NavController) { }
 
   ngOnInit() {
     this.id=this.activeRoute.snapshot.paramMap.get('id');
@@ -21,4 +22,17 @@ export class StaffPage implements OnInit {
     console.log(this.id,this.user,this.type);
   }
 
+  move2info(){
+    this.navCtrl.navigateForward(["/info-usuario",this.id,this.user,this.type]);
+  }
+
+  move2crud(){
+    this.navCtrl.navigateForward(["/crudusuarios",this.id,this.user,this.type]);
+  }
+  move2login(){
+    this.id =null
+    this.user =null
+    this.type =null
+    this.navCtrl.navigateForward(["/login"]);
+  }
 }
