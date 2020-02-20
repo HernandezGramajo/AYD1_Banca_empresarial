@@ -19,18 +19,26 @@ export class CrudusuariosPage implements OnInit {
 
   private error : Boolean;
   private activo : Boolean;
-
   id =null
-  user =null
+  user_name =null
+
   type =null
+  first_name =null
+   last_name= null;
+   e_mail= null;
+   password= null;
   
   constructor(private apiService : ApiService,private activeRoute: ActivatedRoute) { this.data = new Usuarios(); }
 
   ngOnInit() {
     this.id=this.activeRoute.snapshot.paramMap.get('id');
-    this.user=this.activeRoute.snapshot.paramMap.get('user');
+    this.user_name=this.activeRoute.snapshot.paramMap.get('user_name');
     this.type=this.activeRoute.snapshot.paramMap.get('type');
-    console.log(this.id,this.user,this.type);
+	this.first_name=this.activeRoute.snapshot.paramMap.get('first_name');
+    this.last_name=this.activeRoute.snapshot.paramMap.get('last_name');
+    this.e_mail=this.activeRoute.snapshot.paramMap.get('e_mail');
+	this.password=this.activeRoute.snapshot.paramMap.get('password');
+    console.log(this.id,this.user_name,this.type);
     this.loadUsuarios();
   }
   
@@ -73,12 +81,17 @@ export class CrudusuariosPage implements OnInit {
   modifyUsuario(){
     //Modificar usuario seleccionado
     //Error si no se ha cargado uno
+	
     this.popUpMensaje('Modificando Usuario');
+	    this.error = false;
+    this.checkFields("");
+    if(this.error == false){
     if( this.tipo == "Empleado")
       this.data.type = 2;
     if( this.tipo == "Administrador")
       this.data.type = 1;
     this.apiService.updateItem(this.data.id,this.data).subscribe();
+	}
   }
 
   deleteUsuario(){
@@ -87,6 +100,7 @@ export class CrudusuariosPage implements OnInit {
     this.popUpMensaje('Dando de Baja a Usuario');
     this.data.active = 0;
     this.apiService.updateItem(this.data.id,this.data).subscribe();
+	
   }
 
   reactivateUsuario(){
@@ -95,12 +109,49 @@ export class CrudusuariosPage implements OnInit {
     this.popUpMensaje('Reactivando Usuario');
     this.data.active = 1;
     this.apiService.updateItem(this.data.id,this.data).subscribe();
+	
   }
 
   checkFields(mensajeDeError){
+	  
     //Anidar en mensajeDeError, todos los campos vacios
     if(!this.data.id || this.data.id.toString().length == 0 || this.data.id != 0){
       mensajeDeError = mensajeDeError + "ID vacio o debe ser 0.<br>";
+      this.error = true;
+      this.popUpMensaje(mensajeDeError);
+    }
+	
+	    if(!this.data.user_name || this.data.user_name.length == 0){
+      mensajeDeError = mensajeDeError + "Nombre de Usuario vacio.<br>";
+      this.error = true;
+      this.popUpMensaje(mensajeDeError);
+    }
+	
+		    if(!this.data.first_name||  this.data.first_name.length == 0){
+      mensajeDeError = mensajeDeError + "Primer Nombre vacio.<br>";
+      this.error = true;
+      this.popUpMensaje(mensajeDeError);
+    }
+	
+			    if(!this.data.last_name||  this.data.last_name.length == 0){
+      mensajeDeError = mensajeDeError + "Segundo Nombre vacio.<br>";
+      this.error = true;
+      this.popUpMensaje(mensajeDeError);
+    }
+	
+			    if(!this.data.e_mail||  this.data.e_mail.length == 0){
+      mensajeDeError = mensajeDeError + "Email vacio.<br>";
+      this.error = true;
+      this.popUpMensaje(mensajeDeError);
+    }
+	
+			    if(!this.data.password||  this.data.password.length == 0){
+      mensajeDeError = mensajeDeError + "Password vacio.<br>" ; 
+      this.error = true;
+      this.popUpMensaje(mensajeDeError);
+    }
+     if(!this.data.type||  this.data.type.toString().length == 0){
+      mensajeDeError = mensajeDeError + "Tipo vacio.<br>" ; 
       this.error = true;
       this.popUpMensaje(mensajeDeError);
     }
