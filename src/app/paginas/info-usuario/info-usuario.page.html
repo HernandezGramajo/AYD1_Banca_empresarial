@@ -27,13 +27,13 @@
     </ion-item>
     <ion-item>
       <ion-label position="floating">Contraseña</ion-label>
-      <ion-input clear-input type="text" [(ngModel)]="data.password"></ion-input>
+      <ion-input clear-input type="text" disabled="true" [(ngModel)]="data.password"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Correo</ion-label>
-      <ion-input clear-input type="text" [(ngModel)]="data.e_mail"></ion-input>
+      <ion-input clear-input type="text" disabled="true" [(ngModel)]="data.e_mail"></ion-input>
     </ion-item>
-    <ion-button color="warning" (click)="modifyUsuario()">Cambiar Contraseña</ion-button>
+    <ion-button color="warning" (click)="returnMenu()">Menu Principal</ion-button>
     <br>
   </div>
 </ion-content>

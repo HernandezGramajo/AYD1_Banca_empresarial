@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController, } from '@ionic/angular';
 import {ActivatedRoute} from '@angular/router';
 import { Usuarios } from '../../modelos/usuarios';
 import { ApiService } from '../../servicios/api.service';
@@ -20,25 +21,19 @@ export class CrudusuariosPage implements OnInit {
   private error : Boolean;
   private activo : Boolean;
   id =null
-  user_name =null
-
+  user =null
   type =null
-  first_name =null
-   last_name= null;
-   e_mail= null;
-   password= null;
   
-  constructor(private apiService : ApiService,private activeRoute: ActivatedRoute) { this.data = new Usuarios(); }
+  constructor(private apiService : ApiService,private activeRoute: ActivatedRoute, public navCtrl: NavController) { this.data = new Usuarios(); }
 
   ngOnInit() {
     this.id=this.activeRoute.snapshot.paramMap.get('id');
-    this.user_name=this.activeRoute.snapshot.paramMap.get('user_name');
+    this.user=this.activeRoute.snapshot.paramMap.get('user');
     this.type=this.activeRoute.snapshot.paramMap.get('type');
-	this.first_name=this.activeRoute.snapshot.paramMap.get('first_name');
-    this.last_name=this.activeRoute.snapshot.paramMap.get('last_name');
-    this.e_mail=this.activeRoute.snapshot.paramMap.get('e_mail');
-	this.password=this.activeRoute.snapshot.paramMap.get('password');
-    console.log(this.id,this.user_name,this.type);
+    if(this.type < 2){
+
+    }
+    console.log(this.id,this.user,this.type);
     this.loadUsuarios();
   }
   
@@ -164,6 +159,10 @@ export class CrudusuariosPage implements OnInit {
     loading.present();
     
     document.body.appendChild(loading);
+  }
+
+  returnMenu(){
+    this.navCtrl.navigateForward(["/staff",this.id,this.user,this.type]);
   }
 
 }

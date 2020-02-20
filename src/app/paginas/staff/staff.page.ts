@@ -29,6 +29,7 @@ export class StaffPage implements OnInit {
   move2crud(){
     this.navCtrl.navigateForward(["/crudusuarios",this.id,this.user,this.type]);
   }
+  
   move2login(){
     this.id =null
     this.user =null

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController, } from '@ionic/angular';
 import {ActivatedRoute} from '@angular/router';
 import { Usuarios } from '../../modelos/usuarios';
 import { ApiService } from '../../servicios/api.service';
@@ -12,13 +13,11 @@ export class InfoUsuarioPage implements OnInit {
 
   private data : Usuarios;
 
-  private activo : Boolean;
-
   id =null;
   user =null;
   type =null;
 
-  constructor(private apiService : ApiService,private activeRoute: ActivatedRoute) { this.data = new Usuarios(); }
+  constructor(private apiService : ApiService,private activeRoute: ActivatedRoute, public navCtrl: NavController) { this.data = new Usuarios(); }
 
   ngOnInit() {
     this.id=this.activeRoute.snapshot.paramMap.get('id');
@@ -35,11 +34,11 @@ export class InfoUsuarioPage implements OnInit {
     //this.popUpMensaje('Cargando Usuario: '+this.codigoEmpleado);
     this.apiService.getItem(this.id as Number).subscribe( response => {
         this.data = response;
-        if(response.active == 0)
-          this.activo = false
-        else
-          this.activo = true
     });
+  }
+
+  returnMenu(){
+    this.navCtrl.navigateForward(["/staff",this.id,this.user,this.type]);
   }
 
 }
