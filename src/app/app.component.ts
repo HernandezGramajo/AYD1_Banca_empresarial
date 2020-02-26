@@ -10,7 +10,27 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss']
 })
+
+
+
+  
 export class AppComponent {
+
+
+  public appPages = [
+    {
+      title: 'Consulta Pagos',
+      url: '/consulta-pagos-empresa',
+      icon: 'clipboard'
+    },
+    {
+      title: 'Consulta Nomina',
+      url: '/consulta-reporte-nomina-empresa',
+      icon: 'stats'
+    }
+   
+  ];
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
