@@ -27,6 +27,11 @@ export class AppComponent {
       title: 'Consulta Nomina',
       url: '/consulta-reporte-nomina-empresa',
       icon: 'stats'
+    },
+    {
+    title: 'Menu Staff',
+      url: '/staff/1/Administrador/0',
+      icon: 'dashboard'
     }
    
   ];
