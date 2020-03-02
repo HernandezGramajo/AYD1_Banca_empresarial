@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title color="warning">Consulta de pagos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding class="background">
+  <div class="centrado carta">
+    <ion-row>
+      <ion-col width-33>
+        <ion-item>
+          <ion-label position="floating">Mes</ion-label>
+          <ion-select [(ngModel)]="mesConsulta">
+            <ion-select-option></ion-select-option>
+            <ion-select-option>1</ion-select-option>
+            <ion-select-option>2</ion-select-option>
+            <ion-select-option>3</ion-select-option>
+            <ion-select-option>4</ion-select-option>
+            <ion-select-option>5</ion-select-option>
+            <ion-select-option>6</ion-select-option>
+            <ion-select-option>7</ion-select-option>
+            <ion-select-option>8</ion-select-option>
+            <ion-select-option>9</ion-select-option>
+            <ion-select-option>10</ion-select-option>
+            <ion-select-option>11</ion-select-option>
+            <ion-select-option>12</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col width-33>
+        <ion-item>
+          <ion-label position="floating">Año</ion-label>
+          <ion-select [(ngModel)]="anioConsulta">
+            <ion-select-option></ion-select-option>
+            <ion-select-option>2020</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col width-33>
+        <ion-button color="warning" (click)="getNominas()">Consultar</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-item>
+      <ion-item *ngFor="let codigoItem of dataUsuarios">
+        {{ codigoItem.id }}
+      </ion-item>
+    </ion-item>
+  </div>
+</ion-content>

@@ -22,7 +22,7 @@ const routes: Routes = [
   },
   {
     path: 'reportes-usuario/:id/:user/:type',
-    loadChildren: () => import('./reportes-usuario/reportes-usuario.module').then( m => m.ReportesUsuarioPageModule)
+    loadChildren: () => import('./paginas/reportes-usuario/reportes-usuario.module').then( m => m.ReportesUsuarioPageModule)
   },
 
 
