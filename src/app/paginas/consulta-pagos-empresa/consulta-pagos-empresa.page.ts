@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, } from '@ionic/angular';
 import {ActivatedRoute} from '@angular/router';
 import {Usuarios} from '../../modelos/usuarios';
+import {Pago_nominas} from '../../modelos/nominas_pagos';
 import {EmpresaServicesService} from '../../servicios/empresa-services.service';
 import {Observable} from 'rxjs';
 
@@ -14,6 +15,7 @@ import {Observable} from 'rxjs';
 export class ConsultaPagosEmpresaPage implements OnInit {
 
   result_user : Observable<Usuarios>;
+  result_pagos : Observable<Pago_nominas>;
   private id_user:ConsultaPagosEmpresaPage;
   private salario:ConsultaPagosEmpresaPage;
   private mes:ConsultaPagosEmpresaPage;
@@ -37,6 +39,7 @@ export class ConsultaPagosEmpresaPage implements OnInit {
 
 
   Consultar():void {
+ this.result_pagos = this.serv.pago_primera_quincena(this.year,this.mes);
     console.log(this.year);
     console.log(this.mes);
     console.log(this.salario);
