@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController, } from '@ionic/angular';
+import {ActivatedRoute} from '@angular/router';
+import {Usuarios} from '../../modelos/usuarios';
+import {EmpresaServicesService} from '../../servicios/empresa-services.service';
+import {Observable} from 'rxjs';
+
 
 @Component({
   selector: 'app-consulta-pagos-empresa',
@@ -7,9 +13,42 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConsultaPagosEmpresaPage implements OnInit {
 
-  constructor() { }
+  result_user : Observable<Usuarios>;
+  private id_user:ConsultaPagosEmpresaPage;
+  private salario:ConsultaPagosEmpresaPage;
+  private mes:ConsultaPagosEmpresaPage;
+  private year:ConsultaPagosEmpresaPage;
+  id =null
+  user =null
+  type =null
+  constructor(private activeRoute: ActivatedRoute, public navCtrl: NavController, private serv :EmpresaServicesService) { }
 
   ngOnInit() {
+    this.id=this.activeRoute.snapshot.paramMap.get('id');
+    this.user=this.activeRoute.snapshot.paramMap.get('user');
+    this.type=this.activeRoute.snapshot.paramMap.get('type');
+    this.cargar_datos();
+  }
+
+  cargar_datos():void{
+
+    this.result_user = this.serv.obtenerdatos_Usuarios();
+  }
+
+
+  Consultar():void {
+    console.log(this.year);
+    console.log(this.mes);
+    console.log(this.salario);
+    console.log(this.id_user);
+    if(this.id_user==null){
+      console.log("-1");
+    }else{
+      console.log(this.id_user);
+
+    }
+    
+
   }
 
 }

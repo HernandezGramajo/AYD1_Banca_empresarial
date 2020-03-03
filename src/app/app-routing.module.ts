@@ -21,14 +21,10 @@ const routes: Routes = [
     loadChildren: () => import('./paginas/staff/staff.module').then( m => m.StaffPageModule)
   },
   {
-    path: 'consulta-pagos-empresa',
+    path: 'consulta-pagos-empresa/:id/:user/:type',
     loadChildren: () => import('./paginas/consulta-pagos-empresa/consulta-pagos-empresa.module').then( m => m.ConsultaPagosEmpresaPageModule)
   },
-  {
-    path: 'consulta-reporte-nomina-empresa',
-    loadChildren: () => import('./paginas/consulta-reporte-nomina-empresa/consulta-reporte-nomina-empresa.module').then( m => m.ConsultaReporteNominaEmpresaPageModule)
-  },
-
+  
 ];
 
 @NgModule({

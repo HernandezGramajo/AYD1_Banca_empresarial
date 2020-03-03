@@ -17,24 +17,6 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 export class AppComponent {
 
 
-  public appPages = [
-    {
-      title: 'Consulta Pagos',
-      url: '/consulta-pagos-empresa',
-      icon: 'clipboard'
-    },
-    {
-      title: 'Consulta Nomina',
-      url: '/consulta-reporte-nomina-empresa',
-      icon: 'stats'
-    },
-    {
-    title: 'Menu Staff',
-      url: '/staff/1/Administrador/0',
-      icon: 'dashboard'
-    }
-   
-  ];
 
   constructor(
     private platform: Platform,

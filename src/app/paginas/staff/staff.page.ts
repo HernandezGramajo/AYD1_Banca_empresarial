@@ -37,6 +37,6 @@ export class StaffPage implements OnInit {
     this.navCtrl.navigateForward(["/login"]);
   }
   mover_Consulta_Empresa(){
-    this.navCtrl.navigateForward("/consulta-pagos-empresa");
+    this.navCtrl.navigateForward(["/consulta-pagos-empresa",this.id,this.user,this.type]);
   }
 }
