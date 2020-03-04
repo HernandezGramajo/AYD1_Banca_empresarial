@@ -20,6 +20,11 @@ const routes: Routes = [
     path: 'staff/:id/:user/:type',
     loadChildren: () => import('./paginas/staff/staff.module').then( m => m.StaffPageModule)
   },
+  {
+    path: 'reportes-usuario/:id/:user/:type',
+    loadChildren: () => import('./paginas/reportes-usuario/reportes-usuario.module').then( m => m.ReportesUsuarioPageModule)
+  },
+
 
 ];
 
