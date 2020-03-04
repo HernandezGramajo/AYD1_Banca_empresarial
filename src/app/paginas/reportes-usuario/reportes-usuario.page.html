@@ -5,7 +5,7 @@
 </ion-header>
 
 
-<ion-content padding class="background">
+<ion-content padding class="background centrado">
   <div class="centrado carta">
     <ion-row>
       <ion-col width-33>
@@ -41,10 +41,44 @@
         <ion-button color="warning" (click)="getNominas()">Consultar</ion-button>
       </ion-col>
     </ion-row>
-    <ion-item>
-      <ion-item *ngFor="let codigoItem of dataUsuarios">
-        {{ codigoItem.id }}
-      </ion-item>
+    <ion-item *ngFor="let codigoItem of dataUsuarios" class="centrado fields">
+      <ion-row>
+        <ion-col width-33>
+          <ion-label color="tertiary"  position="floating">ID</ion-label><br>
+          {{codigoItem.id}}
+        </ion-col>
+        <ion-col width-33>
+          <ion-label color="tertiary"  position="floating">Inicio Periodo</ion-label><br>
+          {{codigoItem.start_period}}
+        </ion-col>
+        <ion-col width-33>
+          <ion-label color="tertiary"  position="floating">Fin Periodo</ion-label><br>
+          {{codigoItem.end_period}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col width-50>
+          <ion-label color="tertiary"  position="floating">Faltas</ion-label><br>
+          {{codigoItem.missed_days}}
+        </ion-col>
+        <ion-col width-50>
+          <ion-label color="tertiary"  position="floating">ID Pago</ion-label><br>
+          {{codigoItem.id_payment_type}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col width-50>
+          <ion-label color="tertiary"  position="floating">Pago por Dia</ion-label><br>
+          {{codigoItem.payment_per_day}}
+        </ion-col>
+        <ion-col width-50>
+          <ion-label color="tertiary"  position="floating">Total Pagado</ion-label><br>
+          {{codigoItem.total_payment}} 
+        </ion-col>
+      </ion-row>
     </ion-item>
+    <br>
+    <ion-button color="warning" (click)="returnMenu()">Menu Principal</ion-button>
+    <br>
   </div>
 </ion-content>

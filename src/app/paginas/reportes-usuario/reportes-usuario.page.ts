@@ -66,4 +66,8 @@ export class ReportesUsuarioPage implements OnInit {
     document.body.appendChild(loading);
   }
 
+  returnMenu(){
+    this.navCtrl.navigateForward(["/staff",this.id,this.user,this.type]);
+  }
+
 }
