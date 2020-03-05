@@ -41,7 +41,7 @@ export class StaffPage implements OnInit {
   }
   // moverse a STAFF - consultar historial de pagos
   move2staffcheckpay(){
-    this.navCtrl.navigateForward(["/",this.id,this.user,this.type]);
+    this.navCtrl.navigateForward(["/consulta-pagos-empresa",this.id,this.user,this.type]);
   }
 
   //moverse a login
