@@ -20,7 +20,33 @@
         <div *ngIf="type < 2; else elseBlock">
           <ion-button expand="full" (click)="move2crud()">Administrar Usuarios</ion-button>
         </div>
-        <ng-template #elseBlock></ng-template>
+        <ng-template #elseBlock>
+          <div>
+            <ion-button expand="full" (click)="">Consultar Pagos</ion-button>
+          </div>
+        </ng-template>
+      </ion-col>
+      <ion-col>
+        <div *ngIf="type < 2; else elseBlock">
+          <ion-button expand="full" (click)="">Pago de Nomina</ion-button>
+        </div>
+        <ng-template #elseBlock>
+          <div>
+            <ion-button expand="full" (click)="">Vacio</ion-button>
+          </div>
+        </ng-template>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div *ngIf="type < 2; else elseBlock">
+          <ion-button expand="full" (click)="">Consultar historial pagos</ion-button>
+        </div>
+        <ng-template #elseBlock>
+          <div>
+            <ion-button expand="full" (click)="">Vacio</ion-button>
+          </div>
+        </ng-template>
       </ion-col>
     </ion-row>
     <ion-row>
