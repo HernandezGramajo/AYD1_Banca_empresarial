@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component,OnInit} from '@angular/core';
 import { NavController, } from '@ionic/angular';
 import fetch from 'node-fetch';
 
@@ -9,7 +9,7 @@ import fetch from 'node-fetch';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage  {
+export class LoginPage implements OnInit {
 private password : LoginPage;
 private user : LoginPage;
 
@@ -18,7 +18,24 @@ private user : LoginPage;
     
   }
  error="";
+ private ver_pass:string;
+ private type_pass:string;
+ ngOnInit() {
+  this.ver_pass="eye";
+  this.type_pass="password"
 
+ }
+ ver_password(){
+   if(this.type_pass=="password"){
+     this.ver_pass ="eye-off";
+     this.type_pass="text";
+   }else{
+     this.ver_pass="eye";
+     this.type_pass="password"
+   }
+
+
+ }
     presentLoading():void {
       
       
