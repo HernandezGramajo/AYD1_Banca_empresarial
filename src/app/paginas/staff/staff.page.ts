@@ -33,7 +33,7 @@ export class StaffPage implements OnInit {
   //aun esta pendiente que el resto de equipos finalicen sus paginas para poder enlazarlas y dimensionar los botones.
   //moverse a consultar pagos
   move2checkpay(){
-    this.navCtrl.navigateForward(["/",this.id,this.user,this.type]);
+    this.navCtrl.navigateForward(["/reportes-usuario",this.id,this.user,this.type]);
   }
   //moverse a STAFF - Pago de nomina
   move2staffpay(){
