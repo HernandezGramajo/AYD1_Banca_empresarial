@@ -42,43 +42,6 @@ result_user : Observable<Usuarios>;
 
  }
 
- cargar():void{
-
-      
-    
-  const loading = document.createElement('ion-loading');
-  loading.message = 'Por Favor Espere...';
-  loading.duration = 1000;
-  
-  document.body.appendChild(loading);
-  loading.present();
-  let  pass = this.password;
- 
-     fetch('http://3.20.104.181:8099/api/usuarios?filter[where][user_name]=adminSup')
-      .then(res=> res.json())
-      .then(json => {
-       
-          if(json==""){ // si no exite el usuario y json no trae nada
-            
-            this.error ="El usuario no existe";
-          }else{
-            if (json[0].password == pass){
-
-              
-    
-            }else{
-              console.log("4");
-              this.error ="Contraseña incorrecata";
-            }
-          
-          }
-              
-        
-      })
-      .catch(err => {
-        this.error ="Nuestros servidores se encuentra en mantenimiento, por favor inténtelo más tarde";
-    });;
- }
     presentLoading():void {
       this.error="";
       this.result_user = this.serv.obtenerdatos_Usuarios_para_login(this.user);
