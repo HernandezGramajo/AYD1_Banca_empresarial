@@ -31,7 +31,7 @@ export class StaffPage implements OnInit {
   }
 
   //aun esta pendiente que el resto de equipos finalicen sus paginas para poder enlazarlas y dimensionar los botones.
-  //moverse a consultar pagos
+  //moverse a consultar pagos de usuario
   move2checkpay(){
     this.navCtrl.navigateForward(["/reportes-usuario",this.id,this.user,this.type]);
   }
@@ -51,7 +51,8 @@ export class StaffPage implements OnInit {
     this.type =null
     this.navCtrl.navigateForward(["/login"]);
   }
+  /*
   mover_Consulta_Empresa(){
     this.navCtrl.navigateForward(["/consulta-pagos-empresa",this.id,this.user,this.type]);
-  }
+  }*/
 }

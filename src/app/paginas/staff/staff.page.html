@@ -17,42 +17,41 @@
         </div>
       </ion-col>
       <ion-col>
-        <div *ngIf="type < 2; else elseBlock">
+        <div *ngIf="type < 2; else elseBlock1">
           <ion-button expand="full" (click)="move2crud()">Administrar Usuarios</ion-button>
         </div>
-        <ng-template #elseBlock>
+        <ng-template #elseBlock1>
           <div>
-            <ion-button expand="full" >Consultar Pagos</ion-button>
+            <ion-button expand="full" (click)="move2checkpay()">Consultar Pagos</ion-button>
           </div>
         </ng-template>
       </ion-col>
       <ion-col>
-        <div *ngIf="type < 2; else elseBlock">
+        <div *ngIf="type < 2; else elseBlock2">
           <ion-button expand="full" >Pago de Nomina</ion-button>
         </div>
-        <ng-template #elseBlock>
+        <ng-template #elseBlock2>
+         <!---- se agregara cuando se tengan nuevas funcionalidades 
           <div>
-            <ion-button expand="full">Vacio</ion-button>
-          </div>
+            <ion-button expand="full">Vacio</ion-button> 
+          </div> 
+        -->
         </ng-template>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <div *ngIf="type > 2; else elseBlock">
+        <div *ngIf="type < 2; else elseBlock3">
           <!---->
-          <ion-button expand="full" >Consultar historial pagos</ion-button>
+          <ion-button expand="full" (click)="move2staffcheckpay()">Consultar historial pagos</ion-button>
         </div>
-      
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <div *ngIf="type < 2; else elseBlock">
-          <!---->
-          <ion-button expand="full" (click)="mover_Consulta_Empresa()">Consutas Empresariales</ion-button>
-        </div>
-       
+        <ng-template #elseBlock3>
+          <!---- se agregara cuando se tengan nuevas funcionalidades 
+           <div>
+             <ion-button expand="full">Vacio</ion-button> 
+           </div> 
+         -->
+         </ng-template>
       </ion-col>
     </ion-row>
     <ion-row>
