@@ -18,6 +18,11 @@ export class EmpresaServicesService {
     return this.http.get<Usuarios>(this.url).pipe();
 
   }
+  obtenerdatos_Usuarios_para_login(user){
+    this.url ="http://3.20.104.181:8099/api/usuarios?filter[where][user_name]="+user;
+    return this.http.get<Usuarios>(this.url).pipe();
+
+  }
   pagos_por_quincena( year, mont,quincena){
     this.url ="http://3.20.104.181:7099/api/nominas?filter[where][start_period]="+year+"-"+mont+"-"+quincena+"T00:00:00.000Z";
     return this.http.get<Pago_nominas>(this.url).pipe();
