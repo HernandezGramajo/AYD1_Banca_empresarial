@@ -30,7 +30,7 @@
   </ion-item>
   <ion-item class=" fields">
     <ion-label color="tertiary"  position="floating">Salario Mensual</ion-label>
-    <ion-select [(ngModel)]="salario"   placeholder="Seleccione una opcion">
+    <ion-select [(ngModel)]="quincena"   placeholder="Seleccione una opcion">
       <ion-select-option  value="0">Ninguno</ion-select-option>
       <ion-select-option  value="1">1ra Quincena</ion-select-option>
       <ion-select-option  value="2">2da Quincena</ion-select-option>
@@ -49,26 +49,27 @@
   <div class ="centrado">
     <ion-button  color="dark"  (click)="Consultar()">consultar</ion-button>
   </div>
-
+  
   <br>
   <br>
   <ion-item  class=" fields" button *ngFor = "let temp of (result_pagos | async)">
-    <ion-label color="tertiary"  position="floating">ID</ion-label><br>
-    {{temp.id}} <br>
+    <ion-label  color="tertiary"  position="floating">Empleado</ion-label>
+    <ng-container *ngFor="let Usuario of (result_user | async)">
+      <ul *ngIf="temp.id_user==Usuario.id">
+        {{Usuario.first_name}} {{Usuario.last_name}}
+      </ul>
+    </ng-container> 
+     
     <ion-label color="tertiary"  position="floating">Inicio Periodo</ion-label><br>
-    {{temp.start_period}} <br>
+    {{temp.start_period.replace('T00:00:00.000Z',"")}} <br>
     <ion-label color="tertiary"  position="floating">Fin Periodo</ion-label><br>
-    {{temp.end_period}} <br>
+    {{temp.end_period.replace('T00:00:00.000Z',"")}} <br>
     <ion-label color="tertiary"  position="floating">Faltas</ion-label><br>
     {{temp.missed_days}} <br>
-    <ion-label color="tertiary"  position="floating">ID User</ion-label><br>
-    {{temp.id_user}} <br>
-    <ion-label color="tertiary"  position="floating">ID Pago</ion-label><br>
-    {{temp.id_payment_type}} <br>
     <ion-label color="tertiary"  position="floating">Pago por Dia</ion-label><br>
     {{temp.payment_per_day}} <br>
     <ion-label color="tertiary"  position="floating">Total Quincena</ion-label><br>
-    {{temp.total_payment}} <br> 
+    {{temp.total_payment - temp.payment_per_day*temp.missed_days}} <br> 
     </ion-item>
 </ion-content>
 

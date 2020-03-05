@@ -25,4 +25,12 @@ export class EmpresaServicesService {
     return this.http.get<Pago_nominas>(this.url).pipe();
   }
 
+  Usuario_especifico(user){
+    
+    this.url ="http://3.20.104.181:7099/api/nominas?filter[where][and][0][start_period]=2020-02-01T00:00:00.000Z&filter[where][and][1][id_user]="+user;
+    console.log(this.url);
+    return this.http.get<Pago_nominas>(this.url).pipe();
+
+  }
+
 }

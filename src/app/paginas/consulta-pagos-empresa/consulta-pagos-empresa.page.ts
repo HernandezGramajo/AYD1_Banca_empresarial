@@ -16,10 +16,10 @@ export class ConsultaPagosEmpresaPage implements OnInit {
 
   result_user : Observable<Usuarios>;
   result_pagos : Observable<Pago_nominas>;
-  private id_user:ConsultaPagosEmpresaPage;
-  private salario:ConsultaPagosEmpresaPage;
-  private mes:ConsultaPagosEmpresaPage;
-  private year:ConsultaPagosEmpresaPage;
+  private id_user:string;
+  private quincena:string;
+  private mes:string;
+  private year:string;
   id =null
   user =null
   type =null
@@ -39,19 +39,26 @@ export class ConsultaPagosEmpresaPage implements OnInit {
 
 
   Consultar():void {
- this.result_pagos = this.serv.pago_primera_quincena(this.year,this.mes);
-    console.log(this.year);
-    console.log(this.mes);
-    console.log(this.salario);
-    console.log(this.id_user);
-    if(this.id_user==null){
-      console.log("-1");
+    
+   
+    if(this.year==null){ // si es null se hace una consulta solo por el usuario
+      if(this.id_user!=null && this.id_user != "0"){ // si elegio un usuario
+        if(this.mes!=null && this.mes != "0"){ // puso un mes
+          if(this.quincena=='1'){ // si puso una quincena
+
+          }else if(this.quincena=='2'){ // si puso la segunda quincena
+
+          }else if(this.quincena=='3'){ // si puso todo el mes
+          }
+        }
+        this.result_pagos = this.serv.Usuario_especifico(this.id_user)
     }else{
-      console.log(this.id_user);
+
 
     }
+ 
     
 
   }
-
+  }
 }
