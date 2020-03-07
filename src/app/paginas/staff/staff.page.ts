@@ -37,7 +37,7 @@ export class StaffPage implements OnInit {
   }
   //moverse a STAFF - Pago de nomina
   move2staffpay(){
-    this.navCtrl.navigateForward(["/",this.id,this.user,this.type]);
+    this.navCtrl.navigateForward(["/#",this.id,this.user,this.type]);
   }
   // moverse a STAFF - consultar historial de pagos
   move2staffcheckpay(){
