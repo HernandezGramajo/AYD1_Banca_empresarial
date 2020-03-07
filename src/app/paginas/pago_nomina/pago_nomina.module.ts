@@ -15,6 +15,6 @@ import { PagoNominaPage } from './pago_nomina.page';
     IonicModule,
     PagoNominaPageRoutingModule,
   ],
-  declarations: [CrudusuariosPage]
+  declarations: [PagoNominaPage]
 })
 export class PagoNominaPageModule {}
