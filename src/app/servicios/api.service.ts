@@ -6,6 +6,7 @@ import { retry, catchError } from 'rxjs/operators';
 import { Nominas } from '../modelos/nominas';
 import { Tipo_Nomina } from '../modelos/tipo_nomina';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -68,6 +69,7 @@ export class ApiService {
     .get<Nominas>(this.base_path_2)
     .pipe(/*retry(2),*/catchError(this.handleError)/**/)
   }
+
   
     getItemNomina(itemID) : Observable<Nominas>{
     return this.http
@@ -75,11 +77,13 @@ export class ApiService {
     .pipe(/*retry(2),*/catchError(this.handleError)/**/)
   }
 
+
   getItemNominas(itemID) : Observable<Nominas>{
     return this.http
     .get<Nominas>(this.base_path_2+"?filter[where][id_user]="+itemID)
     .pipe(/*retry(2),*/catchError(this.handleError)/**/)
   }
+
   
     getAllTipoNominas() : Observable<Tipo_Nomina>{
     return this.http
@@ -105,7 +109,7 @@ export class ApiService {
     .put<Usuarios>(this.base_path+"/"+itemID, JSON.stringify(item),this.httpOptions)
     .pipe(/*retry(2),*/catchError(this.handleError)/**/)
   }
-  
+
 
   getItemNominasMes(){
 
@@ -157,3 +161,4 @@ export class ApiService {
   }
 
 }
+
