@@ -91,12 +91,7 @@ export class ApiService {
     .pipe(/*retry(2),*/catchError(this.handleError)/**/)
   }
   
-  
-    getItemNominas(itemID) : Observable<Usuarios>{
-    return this.http
-    .get<Usuarios>(this.base_path+"/"+itemID)
-    .pipe(/*retry(2),*/catchError(this.handleError)/**/)
-  }
+
 
   createItemNominas(item): Observable<Usuarios>{
     return this.http
