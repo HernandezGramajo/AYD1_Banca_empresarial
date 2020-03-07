@@ -35,7 +35,11 @@ const routes: Routes = [
 
     path: 'consulta-pagos-empresa/:id/:user/:type',
     loadChildren: () => import('./paginas/consulta-pagos-empresa/consulta-pagos-empresa.module').then( m => m.ConsultaPagosEmpresaPageModule)
+  },  {
+    path: 'pago-nomina',
+    loadChildren: () => import('./paginas/pago-nomina/pago-nomina.module').then( m => m.PagoNominaPageModule)
   },
+
   
 
 ];
