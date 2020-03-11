@@ -30,7 +30,11 @@ const routes: Routes = [
 
     path: 'consulta-pagos-empresa/:id/:user/:type',
     loadChildren: () => import('./paginas/consulta-pagos-empresa/consulta-pagos-empresa.module').then( m => m.ConsultaPagosEmpresaPageModule)
+  },  {
+    path: 'sol-prestamo',
+    loadChildren: () => import('./paginas/sol-prestamo/sol-prestamo.module').then( m => m.SolPrestamoPageModule)
   },
+
   
 
 ];
