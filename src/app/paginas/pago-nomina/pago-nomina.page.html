@@ -23,46 +23,44 @@
     </ion-item>
     <ion-item>
       <ion-label position="floating">Inicio de Periodo</ion-label>
-      <ion-input clear-input type="text" [(ngModel)]="data.start_period"></ion-input>
+      <ion-input clear-input type="text" placeholder="YYYY-MM-DD" [(ngModel)]="data.start_period"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Final de Periodo</ion-label>
-      <ion-input clear-input type="text" [(ngModel)]="data.end_period"></ion-input>
+      <ion-input clear-input type="text" placeholder="YYYY-MM-DD" [(ngModel)]="data.end_period"></ion-input>
     </ion-item>
-		    <ion-item>
+    <ion-item>
       <ion-label position="floating">Dias Perdidos</ion-label>
       <ion-input clear-input type="text" [(ngModel)]="data.missed_days"></ion-input>
     </ion-item>
-	
-	    <ion-item>
+    <ion-item>
       <ion-label position="floating">Pago por dia</ion-label>
       <ion-input clear-input type="text" [(ngModel)]="data.payment_per_day"></ion-input>
     </ion-item>
-	
-	    <ion-item>
+    <ion-item>
       <ion-label position="floating">Pago Total</ion-label>
       <ion-input clear-input type="text" [(ngModel)]="data.total_payment"></ion-input>
     </ion-item>
-	
-
-  
-  
     <ion-item>
-      <ion-label position="floating">Id Usuario</ion-label>
-      <ion-select [(ngModel)]="codigoNomina">
-        <ion-select-option *ngFor="let codigoNominas of dataNominas"> {{ codigoNominas.id_user }}</ion-select-option>
+      <ion-label position="floating">Usuario Usuario</ion-label>
+      <ion-select [(ngModel)]="codigoUsuario">
+        <ion-select-option *ngFor="let codigoNominas of dataUsuarios" [value]="codigoNominas.id"> {{ codigoNominas.id }} ({{codigoNominas.first_name}} {{codigoNominas.last_name}}) </ion-select-option>
       </ion-select>
     </ion-item>
-	
-	    <ion-item>
-      <ion-label position="floating">TIpo Nomina</ion-label>
-      <ion-select [(ngModel)]="codigoNomina">
-        <ion-select-option *ngFor="let codigoNominas of dataNominas"> {{ codigoNominas.id_payment_type }}</ion-select-option>
+    <ion-item>
+      <ion-label position="floating">Usuario Nomina</ion-label>
+      <ion-input clear-input type="text" disabled [(ngModel)]="data.id_user"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Tipo Nomina</ion-label>
+      <ion-select [(ngModel)]="codigoTipoNomina">
+        <ion-select-option *ngFor="let codigoNominas of dataTipoNominas" [value]="codigoNominas.id"> {{ codigoNominas.descripcion }} ({{codigoNominas.id}})</ion-select-option>
       </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Tipo Nomina</ion-label>
+      <ion-input clear-input type="text" disabled [(ngModel)]="data.id_payment_type"></ion-input>
     </ion-item> 
-	
-	
-
     <ion-button color="warning" (click)="createNomina()">Crear Nomina</ion-button>
     <ion-button color="warning" (click)="modifyNomina()">Modificar Nomina</ion-button>
     <br>

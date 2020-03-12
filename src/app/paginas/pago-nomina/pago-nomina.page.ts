@@ -13,10 +13,14 @@ import { Nominas } from '../../modelos/nominas';
 export class PagoNominaPage implements OnInit {
 
   private dataNominas : any;
+  private dataUsuarios : any;
+  private dataTipoNominas : any;
   private data : Nominas;
 
   
-  private codigoNomina : Number;
+  private codigoNomina : any;
+  private codigoUsuario : any;
+  private codigoTipoNomina : any;
   private tipo : String;
 
   private error : Boolean;
@@ -31,11 +35,8 @@ export class PagoNominaPage implements OnInit {
     this.id=this.activeRoute.snapshot.paramMap.get('id');
     this.user=this.activeRoute.snapshot.paramMap.get('user');
     this.type=this.activeRoute.snapshot.paramMap.get('type');
-    if(this.type < 2){
-
-    }
     console.log(this.id,this.user,this.type);
-    //this.loadNominas();
+    this.loadNominas();
   }
   
 
@@ -45,13 +46,11 @@ export class PagoNominaPage implements OnInit {
     this.apiService.getAllNominas().subscribe( response => {
       this.dataNominas = response;
     })
-  }
-  
-  
-    loadTipoNominas(){
-    //Cargar de la API  todos los usuarios en el Select de Usuarios
+    this.apiService.getAll().subscribe( response => {
+      this.dataUsuarios = response;
+    })
     this.apiService.getAllTipoNominas().subscribe( response => {
-      this.dataNominas = response;
+      this.dataTipoNominas = response;
     })
   }
 
@@ -69,74 +68,77 @@ export class PagoNominaPage implements OnInit {
     this.popUpMensaje('Creando Nomina');
     this.error = false;
     this.checkFields("");
-   /* if(this.error == false){
-      this.data.active = 1;
-      if( this.tipo == "Empleado")
-        this.data.type = 2;
-      if( this.tipo == "Administrador")
-        this.data.type = 1;
+    this.data.id = 0;
+    this.data.id_user = this.codigoUsuario;
+    this.data.id_payment_type = this.codigoTipoNomina;
+    if(this.error == false){
       this.apiService.createItemNominas(this.data).subscribe();
-    }*/
+      this.loadNominas();
+    }
   }
 
   modifyNomina(){
     //Modificar usuario seleccionado
     //Error si no se ha cargado uno
-	
     this.popUpMensaje('Modificando Nomina');
-	    this.error = false;
+    this.error = false;
     this.checkFields("");
-    /*if(this.error == false){
-    if( this.tipo == "Empleado")
-      this.data.type = 2;
-    if( this.tipo == "Administrador")
-      this.data.type = 1;
-    this.apiService.updateItemNominas(this.data.id,this.data).subscribe();
-	}*/
+    this.data.id_user = this.codigoUsuario;
+    this.data.id_payment_type = this.codigoTipoNomina;
+    if(this.error == false){
+      this.apiService.updateItemNominas(this.data.id,this.data).subscribe();
+      this.loadNominas();
+    }
   }
   
   
  checkFields(mensajeDeError){
 	  
     //Anidar en mensajeDeError, todos los campos vacios
-    if(!this.data.id || this.data.id.toString().length == 0 || this.data.id != 0){
-      mensajeDeError = mensajeDeError + "ID vacio o debe ser 0.<br>";
+    if(!this.data.id || this.data.id.toString().length == 0){
+      mensajeDeError = mensajeDeError + "ID vacio<br>";
       this.error = true;
       this.popUpMensaje(mensajeDeError);
     }
 	
-			    if(!this.data.start_period || this.data.start_period.toString().length == 0 || this.data.start_period.toString().length != 0){
+      if(!this.data.start_period || this.data.start_period.toString().length == 0){
       mensajeDeError = mensajeDeError + "Periodo Final Vacio.<br>";
       this.error = true;
       this.popUpMensaje(mensajeDeError);
     }
 	
-		    if(!this.data.end_period || this.data.end_period.toString().length == 0 || this.data.end_period.toString().length != 0){
+		    if(!this.data.end_period || this.data.end_period.toString().length == 0){
       mensajeDeError = mensajeDeError + "Periodo Final Vacio.<br>";
       this.error = true;
       this.popUpMensaje(mensajeDeError);
     }
 
 
-    if(!this.data.missed_days || this.data.missed_days.toString().length == 0 || this.data.missed_days != 0){
+    if(!this.data.missed_days || this.data.missed_days.toString().length == 0){
       mensajeDeError = mensajeDeError + "Dias Perdidos Vacio.<br>";
       this.error = true;
       this.popUpMensaje(mensajeDeError);
     }
 	
-	    if(!this.data.payment_per_day || this.data.payment_per_day.toString().length == 0 || this.data.payment_per_day != 0){
+	    if(!this.data.payment_per_day || this.data.payment_per_day.toString().length == 0){
       mensajeDeError = mensajeDeError + "Dias Pagados Vacio.<br>";
       this.error = true;
       this.popUpMensaje(mensajeDeError);
     }
 	
-	    if(!this.data.total_payment || this.data.total_payment.toString().length == 0 || this.data.total_payment != 0){
+    if(!this.data.total_payment || this.data.total_payment.toString().length == 0){
       mensajeDeError = mensajeDeError + "Pago Total Vacio.<br>";
       this.error = true;
       this.popUpMensaje(mensajeDeError);
     }
 	
-		    if(!this.data.id_payment_type || this.data.id_payment_type.toString().length == 0 || this.data.id_payment_type != 0){
+    if(!this.data.id_user || this.data.id_user.toString().length == 0){
+      mensajeDeError = mensajeDeError + "Usuario a Pagar Vacio.<br>";
+      this.error = true;
+      this.popUpMensaje(mensajeDeError);
+    }
+	
+    if(!this.data.id_payment_type || this.data.id_payment_type.toString().length == 0){
       mensajeDeError = mensajeDeError + "Tipo de Pago Vacio.<br>";
       this.error = true;
       this.popUpMensaje(mensajeDeError);
