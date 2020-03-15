@@ -13,7 +13,8 @@ export class ApiService {
   //Path
   base_path = 'http://3.20.104.181:8099/api/usuarios';
   base_path_2 = 'http://3.20.104.181:7099/api/nominas';
-
+  base_path_3 = 'http://3.20.104.181:5099/api/prestamo';
+  
   constructor(private http: HttpClient) { }
 
   //Opciones
@@ -121,5 +122,8 @@ export class ApiService {
       .pipe(/*retry(2),*/catchError(this.handleError)/**/)
     }
   }
+
+
+  //para solicitud Prestamos
 
 }
