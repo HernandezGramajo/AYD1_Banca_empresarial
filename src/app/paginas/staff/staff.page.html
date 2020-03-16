@@ -9,7 +9,7 @@
 <ion-content padding class="background">
 
 
-  <ion-grid>
+  <ion-grid class = "centrado">
     <ion-row>
       <ion-col>
        <div>
@@ -31,11 +31,11 @@
           <ion-button expand="full" >Pago de Nomina</ion-button>
         </div>
         <ng-template #elseBlock2>
-         <!---- se agregara cuando se tengan nuevas funcionalidades 
+         
           <div>
-            <ion-button expand="full">Vacio</ion-button> 
+            <ion-button expand="full" (click)="move2solprestamo()">Solicitar Prestamo</ion-button> 
           </div> 
-        -->
+     
         </ng-template>
       </ion-col>
     </ion-row>

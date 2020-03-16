@@ -4,6 +4,7 @@ import { Usuarios } from '../modelos/usuarios';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { Nominas } from '../modelos/nominas';
+import { Prestamos } from '../modelos/prestamos';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ export class ApiService {
   //Path
   base_path = 'http://3.20.104.181:8099/api/usuarios';
   base_path_2 = 'http://3.20.104.181:7099/api/nominas';
-
+  base_path_3 = 'http://3.20.104.181:5099/api/prestamos';
+  
   constructor(private http: HttpClient) { }
 
   //Opciones
@@ -122,4 +124,12 @@ export class ApiService {
     }
   }
 
+
+  //para solicitud Prestamos
+
+  createItemPrestamo(item): Observable<Prestamos>{
+    return this.http
+    .post<Prestamos>(this.base_path_3, JSON.stringify(item), this.httpOptions)
+    .pipe(/*retry(2),*/catchError(this.handleError)/**/)
+  }
 }
