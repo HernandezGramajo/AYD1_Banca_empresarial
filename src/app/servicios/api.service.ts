@@ -4,6 +4,7 @@ import { Usuarios } from '../modelos/usuarios';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { Nominas } from '../modelos/nominas';
+import { Prestamos } from '../modelos/prestamos';
 
 @Injectable({
   providedIn: 'root'
@@ -126,4 +127,9 @@ export class ApiService {
 
   //para solicitud Prestamos
 
+  createItemPrestamo(item): Observable<Prestamos>{
+    return this.http
+    .post<Prestamos>(this.base_path, JSON.stringify(item), this.httpOptions)
+    .pipe(/*retry(2),*/catchError(this.handleError)/**/)
+  }
 }
