@@ -5,6 +5,7 @@ import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { Nominas } from '../modelos/nominas';
 import { Tipo_Nomina } from '../modelos/tipo_nomina';
+import { Prestamo } from '../modelos/prestamo';
 
 
 @Injectable({
@@ -16,6 +17,7 @@ export class ApiService {
   base_path = 'http://3.20.104.181:8099/api/usuarios';
   base_path_2 = 'http://3.20.104.181:7099/api/nominas';
   base_path_3 = 'http://3.20.104.181:6099/api/tipoNominas';
+  base_path_4 = 'http://3.20.104.181:5099/api/prestamos';
 
   constructor(private http: HttpClient) { }
 
@@ -149,6 +151,12 @@ export class ApiService {
       .get<Nominas>(this.base_path_2+"?filter[where][and][0][id_user]="+itemID+"&filter[where][and][1][start_period][gt]="+(itemANIO)+"-"+(minimo)+"-31&filter[where][and][2][end_period][lt]="+(itemANIO)+"-"+(maximo)+"-01")
       .pipe(/*retry(2),*/catchError(this.handleError)/**/)
     }
+  }
+
+  getAllPrestamos(itemID) : Observable<Prestamo>{
+    return this.http
+    .get<Prestamo>(this.base_path_4+"?filter[where][id_user]="+itemID)
+    .pipe(/*retry(2),*/catchError(this.handleError)/**/)
   }
 
 }

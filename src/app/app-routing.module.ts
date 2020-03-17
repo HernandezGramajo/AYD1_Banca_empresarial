@@ -40,6 +40,11 @@ const routes: Routes = [
     path: 'pago-nomina/:id/:user/:type',
     loadChildren: () => import('./paginas/pago-nomina/pago-nomina.module').then( m => m.PagoNominaPageModule)
   },
+  {
+    path: 'seguimiento-prestamos/:id/:user/:type',
+    loadChildren: () => import('./paginas/seguimiento-prestamos/seguimiento-prestamos.module').then( m => m.SeguimientoPrestamosPageModule)
+  },
+
 
   
 
