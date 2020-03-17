@@ -7,6 +7,7 @@ import { Nominas } from '../modelos/nominas';
 import { Tipo_Nomina } from '../modelos/tipo_nomina';
 import { Prestamos } from '../modelos/prestamos';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -160,5 +161,12 @@ export class ApiService {
     .post<Prestamos>(this.base_path_3, JSON.stringify(item), this.httpOptions)
     .pipe(/*retry(2),*/catchError(this.handleError)/**/)
   }
+
+  getAllPrestamos(itemID) : Observable<Prestamos>{
+    return this.http
+    .get<Prestamos>(this.base_path_4+"?filter[where][id_user]="+itemID)
+    .pipe(/*retry(2),*/catchError(this.handleError)/**/)
+  }
+
 }
 

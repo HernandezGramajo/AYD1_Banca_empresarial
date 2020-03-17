@@ -44,6 +44,11 @@ export class StaffPage implements OnInit {
     this.navCtrl.navigateForward(["/consulta-pagos-empresa",this.id,this.user,this.type]);
   }
 
+  // moverse a seguimiento de prestamos
+  move2checkloans(){
+    this.navCtrl.navigateForward(["/seguimiento-prestamos",this.id,this.user,this.type]);
+  }
+
   //moverse a login
   move2login(){
     this.id =null

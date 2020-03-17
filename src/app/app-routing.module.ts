@@ -42,6 +42,14 @@ const routes: Routes = [
     path: 'sol-prestamo/:id/:user/:type',
     loadChildren: () => import('./paginas/sol-prestamo/sol-prestamo.module').then( m => m.SolPrestamoPageModule)
   },
+  {
+    path: 'seguimiento-prestamos/:id/:user/:type',
+    loadChildren: () => import('./paginas/seguimiento-prestamos/seguimiento-prestamos.module').then( m => m.SeguimientoPrestamosPageModule)
+  },
+
+
+  
+
 ];
 
 @NgModule({
