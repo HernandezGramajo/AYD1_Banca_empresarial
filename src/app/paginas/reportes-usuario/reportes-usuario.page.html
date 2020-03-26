@@ -1,6 +1,7 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title color="warning">Consulta de pagos</ion-title>
+  <ion-toolbar color="dark">
+    <ion-icon   (click)="returnMenu()" name="arrow-back" slot="start"></ion-icon>
+    <ion-title  class="titulo">Consulta de pagos</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -9,51 +10,50 @@
   <div class="centrado carta">
     <ion-row>
       <ion-col width-33>
-        <ion-item>
-          <ion-label position="floating">Mes</ion-label>
-          <ion-select [(ngModel)]="mesConsulta">
-            <ion-select-option></ion-select-option>
-            <ion-select-option>1</ion-select-option>
-            <ion-select-option>2</ion-select-option>
-            <ion-select-option>3</ion-select-option>
-            <ion-select-option>4</ion-select-option>
-            <ion-select-option>5</ion-select-option>
-            <ion-select-option>6</ion-select-option>
-            <ion-select-option>7</ion-select-option>
-            <ion-select-option>8</ion-select-option>
-            <ion-select-option>9</ion-select-option>
-            <ion-select-option>10</ion-select-option>
-            <ion-select-option>11</ion-select-option>
-            <ion-select-option>12</ion-select-option>
+        <ion-item color ="dark" >
+          <ion-label  position="floating">Mes</ion-label>
+          <ion-select  [(ngModel)]="mesConsulta">
+          
+          <ion-select-option value="01">Enero</ion-select-option>
+          <ion-select-option value="02">Febrero</ion-select-option>
+          <ion-select-option value="03">Marzo</ion-select-option>
+          <ion-select-option value="04">Abril</ion-select-option>
+          <ion-select-option value="05">Mayo</ion-select-option>
+          <ion-select-option value="06">Junio</ion-select-option>
+          <ion-select-option value="07">Julio</ion-select-option>
+          <ion-select-option value="08">Agosto</ion-select-option>
+          <ion-select-option value="09">Septiembre</ion-select-option>
+          <ion-select-option value="10">Octubre</ion-select-option>
+          <ion-select-option value="11">Noviembre</ion-select-option>
+          <ion-select-option value="12">Diciembre</ion-select-option>
           </ion-select>
         </ion-item>
       </ion-col>
       <ion-col width-33>
-        <ion-item>
+        <ion-item color ="dark" >
           <ion-label position="floating">Año</ion-label>
           <ion-select [(ngModel)]="anioConsulta">
-            <ion-select-option></ion-select-option>
+          
             <ion-select-option>2020</ion-select-option>
           </ion-select>
         </ion-item>
       </ion-col>
       <ion-col width-33>
-        <ion-button color="warning" (click)="getNominas()">Consultar</ion-button>
+        <ion-button color="dark" (click)="getNominas()">Consultar</ion-button>
       </ion-col>
     </ion-row>
     <ion-item *ngFor="let codigoItem of dataUsuarios" class="centrado fields">
       <ion-row>
-        <ion-col width-33>
-          <ion-label color="tertiary"  position="floating">ID</ion-label><br>
-          {{codigoItem.id}}
-        </ion-col>
+       
         <ion-col width-33>
           <ion-label color="tertiary"  position="floating">Inicio Periodo</ion-label><br>
-          {{codigoItem.start_period}}
+          {{codigoItem.start_period.replace('T00:00:00.000Z',"")}}
         </ion-col>
+      </ion-row>
+      <ion-row>
         <ion-col width-33>
           <ion-label color="tertiary"  position="floating">Fin Periodo</ion-label><br>
-          {{codigoItem.end_period}}
+          {{codigoItem.end_period.replace('T00:00:00.000Z',"")}}
         </ion-col>
       </ion-row>
       <ion-row>
@@ -61,24 +61,21 @@
           <ion-label color="tertiary"  position="floating">Faltas</ion-label><br>
           {{codigoItem.missed_days}}
         </ion-col>
-        <ion-col width-50>
-          <ion-label color="tertiary"  position="floating">ID Pago</ion-label><br>
-          {{codigoItem.id_payment_type}}
-        </ion-col>
+       
       </ion-row>
       <ion-row>
         <ion-col width-50>
           <ion-label color="tertiary"  position="floating">Pago por Dia</ion-label><br>
           {{codigoItem.payment_per_day}}
         </ion-col>
+      </ion-row>
+        <ion-row>
         <ion-col width-50>
           <ion-label color="tertiary"  position="floating">Total Pagado</ion-label><br>
-          {{codigoItem.total_payment}} 
+          {{codigoItem.total_payment- codigoItem.payment_per_day*codigoItem.missed_days}} 
         </ion-col>
       </ion-row>
     </ion-item>
-    <br>
-    <ion-button color="warning" (click)="returnMenu()">Menu Principal</ion-button>
-    <br>
+
   </div>
 </ion-content>

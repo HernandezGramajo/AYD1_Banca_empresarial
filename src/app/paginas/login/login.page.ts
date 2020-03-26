@@ -23,6 +23,7 @@ result_user : Observable<Usuarios>;
  error="";
   ver_pass:string;
   type_pass:string;
+   
  ngOnInit() {
    this.password="";
    this.user="";
@@ -45,40 +46,44 @@ result_user : Observable<Usuarios>;
 
     presentLoading():void {
       this.error="";
-      var error_encontrado=0;
+      let mostrar=0;
       this.result_user = this.serv.obtenerdatos_Usuarios_para_login(this.user);
-      
+   
       this.result_user.forEach(element => {
+       
         for (let key in element) {
+          mostrar=1;
           console.log(element[key].user_name);
           
             if(element[key].password == this.password){
-  
+              
               if(element[key].active==0){ // usuario inanctivo
-                error_encontrado=1;
-                console.log("------------ Entroooo1"+error_encontrado);
+                
+                
                 return this.error ="El usuario no se encuentra activo";
                 
               }else{
   
                 this.error="";
-                error_encontrado=1;
-                console.log("------------ Entroooo2"+error_encontrado);
+               
+                
                 //MUTZ reivsa aqui
-                console.log("------------ Entroooo")
+                console.log("entro")
                 return this.navCtrl.navigateForward(["/staff",element[key].id,element[key].user_name,element[key].type]);
              
             }
   
             }else{
-              this.error ="Usuario o Contraseña incorrecata";
+              this.error =" Contraseña incorrecta";
+              return ;
             }
           
         }
         
-     
+  
       });
-      
+     
+  
      
   }
   
