@@ -1,3 +1,4 @@
+
 export class Nominas {
     id : Number;
     start_period : Date;
@@ -7,4 +8,5 @@ export class Nominas {
     total_payment : Number;
     id_user : Number;
     id_payment_type : Number;
+
 }

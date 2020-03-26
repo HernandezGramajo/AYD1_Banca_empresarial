@@ -4,6 +4,9 @@ import { Usuarios } from '../modelos/usuarios';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { Nominas } from '../modelos/nominas';
+import { Tipo_Nomina } from '../modelos/tipo_nomina';
+import { Prestamos } from '../modelos/prestamos';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +16,9 @@ export class ApiService {
   //Path
   base_path = 'http://3.20.104.181:8099/api/usuarios';
   base_path_2 = 'http://3.20.104.181:7099/api/nominas';
-
+  base_path_3 = 'http://3.20.104.181:6099/api/tipoNominas';
+  base_path_4 = 'http://3.20.104.181:5099/api/prestamos';
+  
   constructor(private http: HttpClient) { }
 
   //Opciones
@@ -67,9 +72,35 @@ export class ApiService {
     .pipe(/*retry(2),*/catchError(this.handleError)/**/)
   }
 
+  
+  getItemNomina(itemID) : Observable<Nominas>{
+    return this.http
+    .get<Nominas>(this.base_path_2+"/"+itemID)
+    .pipe(/*retry(2),*/catchError(this.handleError)/**/)
+  }
+
+
   getItemNominas(itemID) : Observable<Nominas>{
     return this.http
     .get<Nominas>(this.base_path_2+"?filter[where][id_user]="+itemID)
+    .pipe(/*retry(2),*/catchError(this.handleError)/**/)
+  }
+  
+  getAllTipoNominas() : Observable<Tipo_Nomina>{
+    return this.http
+    .get<Tipo_Nomina>(this.base_path_3)
+    .pipe(/*retry(2),*/catchError(this.handleError)/**/)
+  }
+  
+  createItemNominas(item): Observable<Nominas>{
+    return this.http
+    .post<Nominas>(this.base_path_2, JSON.stringify(item), this.httpOptions)
+    .pipe(/*retry(2),*/catchError(this.handleError)/**/)
+  }
+
+  updateItemNominas(itemID, item) : Observable<Nominas>{
+    return this.http
+    .put<Nominas>(this.base_path_2+"/"+itemID, JSON.stringify(item),this.httpOptions)
     .pipe(/*retry(2),*/catchError(this.handleError)/**/)
   }
 
@@ -122,4 +153,20 @@ export class ApiService {
     }
   }
 
+
+  //para solicitud Prestamos
+
+  createItemPrestamo(item): Observable<Prestamos>{
+    return this.http
+    .post<Prestamos>(this.base_path_3, JSON.stringify(item), this.httpOptions)
+    .pipe(/*retry(2),*/catchError(this.handleError)/**/)
+  }
+
+  getAllPrestamos(itemID) : Observable<Prestamos>{
+    return this.http
+    .get<Prestamos>(this.base_path_4+"?filter[where][id_user]="+itemID)
+    .pipe(/*retry(2),*/catchError(this.handleError)/**/)
+  }
+
 }
+

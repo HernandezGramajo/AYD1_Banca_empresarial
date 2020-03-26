@@ -44,6 +44,11 @@ export class StaffPage implements OnInit {
     this.navCtrl.navigateForward(["/consulta-pagos-empresa",this.id,this.user,this.type]);
   }
 
+  // moverse a seguimiento de prestamos
+  move2checkloans(){
+    this.navCtrl.navigateForward(["/seguimiento-prestamos",this.id,this.user,this.type]);
+  }
+
   //moverse a login
   move2login(){
     this.id =null
@@ -51,6 +56,13 @@ export class StaffPage implements OnInit {
     this.type =null
     this.navCtrl.navigateForward(["/login"]);
   }
+
+  //moverse a solicitud de prestamos
+
+  move2solprestamo(){
+    this.navCtrl.navigateForward(["/sol-prestamo",this.id,this.user,this.type]);
+  }
+
   /*
   mover_Consulta_Empresa(){
     this.navCtrl.navigateForward(["/consulta-pagos-empresa",this.id,this.user,this.type]);

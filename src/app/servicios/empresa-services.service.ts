@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Usuarios} from '../modelos/usuarios';
-import {Pago_nominas} from '../modelos/nominas_pagos'
+import {Nominas} from '../modelos/nominas'
 
 
 @Injectable({
@@ -25,7 +25,7 @@ export class EmpresaServicesService {
   }
   pagos_por_quincena( year, mont,quincena){
     this.url ="http://3.20.104.181:7099/api/nominas?filter[where][start_period]="+year+"-"+mont+"-"+quincena+"T00:00:00.000Z";
-    return this.http.get<Pago_nominas>(this.url).pipe();
+    return this.http.get<Nominas>(this.url).pipe();
   }
 
   
@@ -33,7 +33,7 @@ export class EmpresaServicesService {
   Usuario_especifico(year,mont,quincena,user){
     
     this.url ="http://3.20.104.181:7099/api/nominas?filter[where][and][0][start_period]="+year+"-"+mont+"-"+quincena+"T00:00:00.000Z&filter[where][and][1][id_user]="+user;  
-     return  this.http.get<Pago_nominas>(this.url).pipe();
+     return  this.http.get<Nominas>(this.url).pipe();
   }
 
 

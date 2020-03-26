@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, } from '@ionic/angular';
 import {ActivatedRoute} from '@angular/router';
 import {Usuarios} from '../../modelos/usuarios';
-import {Pago_nominas} from '../../modelos/nominas_pagos';
+import { Nominas } from '../../modelos/nominas';
 import {EmpresaServicesService} from '../../servicios/empresa-services.service';
 import {Observable} from 'rxjs';
 
@@ -15,8 +15,8 @@ import {Observable} from 'rxjs';
 export class ConsultaPagosEmpresaPage implements OnInit {
 
   result_user : Observable<Usuarios>;
-  result_pagos : Observable<Pago_nominas>;
-  result_pagos2 : Observable<Pago_nominas>;
+  result_pagos : Observable<Nominas>;
+  result_pagos2 : Observable<Nominas>;
   private id_user:string;
   private quincena:string;
   private mes:string;
