@@ -9,7 +9,7 @@
 
 <ion-content padding class="background">
   <div class="centrado carta">
-    <ion-item class="fields">
+    <ion-item color ="dark" class="fields">
       <ion-label color="tertiary" position="floating">Usuario</ion-label>
       <ion-select [(ngModel)]="codigoEmpleado">
         <ion-select-option *ngFor="let codigoItem of dataUsuarios"> {{ codigoItem.id }}</ion-select-option>
@@ -17,31 +17,31 @@
     </ion-item>
     <ion-button color="dark" (click)="getData()">Cargar Usuario</ion-button>
     <br>
-    <ion-item class="fields">
+    <ion-item color ="dark" class="fields">
       <ion-label  color="tertiary" position="floating">Codigo de Usuario</ion-label>
       <ion-input clear-input type="text" [(ngModel)]="data.id"></ion-input>
     </ion-item>
-    <ion-item class="fields">
+    <ion-item color ="dark" class="fields">
       <ion-label  color="tertiary" position="floating">Nombre de Usuario</ion-label>
       <ion-input clear-input type="text" [(ngModel)]="data.user_name"></ion-input>
     </ion-item>
-    <ion-item class="fields">
+    <ion-item color ="dark" class="fields">
       <ion-label  color="tertiary" position="floating">Nombres Empleado</ion-label>
       <ion-input clear-input type="text" [(ngModel)]="data.first_name"></ion-input>
     </ion-item>
-    <ion-item class="fields">
+    <ion-item color ="dark" class="fields">
       <ion-label  color="tertiary" position="floating">Apellidos Empleado</ion-label>
       <ion-input clear-input type="text" [(ngModel)]="data.last_name"></ion-input>
     </ion-item>
-    <ion-item class="fields">
+    <ion-item color ="dark" class="fields">
       <ion-label  color="tertiary" position="floating">Contraseña</ion-label>
       <ion-input clear-input type="text" [(ngModel)]="data.password"></ion-input>
     </ion-item>
-    <ion-item class="fields">
+    <ion-item color ="dark" class="fields">
       <ion-label  color="tertiary" position="floating">Correo</ion-label>
       <ion-input clear-input type="text" [(ngModel)]="data.e_mail"></ion-input>
     </ion-item>
-    <ion-item class="fields">
+    <ion-item color ="dark" class="fields">
       <ion-label  color="tertiary" position="floating">Tipo de Usuario</ion-label>
       <ion-select [(ngModel)]="data.type">
         <ion-select-option>Administrador</ion-select-option>

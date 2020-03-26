@@ -1,5 +1,6 @@
 <ion-header>
   <ion-toolbar color="dark">
+    <ion-icon  (click)="move2login()" name="log-out" slot="start"></ion-icon>
     <ion-title class="titulo" *ngIf="type == 0">Menu Staff</ion-title>
     <ion-title class="titulo" *ngIf="type == 1">Menu Staff</ion-title>
     <ion-title class="titulo" *ngIf="type == 2">Menu Empleado</ion-title>
@@ -16,28 +17,38 @@
         <ion-button  color="dark " expand="full" (click)="move2info()">Informacion de usuario</ion-button>
         </div>
       </ion-col>
-      <ion-col class=" fields">
-        <div class=" fields" *ngIf="type < 2; else elseBlock1">
-          <ion-button color="dark " expand="full" (click)="move2crud()">Administrar Usuarios</ion-button>
-        </div>
-        <ng-template #elseBlock1  >
-          <div >
-            <ion-button  color="dark " (click)="move2checkpay()">Consultar Pagos</ion-button>
+    </ion-row>
+    <ion-row>
+      <ion-col *ngIf="type < 2; else elseBlock1">
+          <div class=" fields">
+             <ion-button color="dark " expand="full" (click)="move2crud()">Administrar Usuarios</ion-button>
           </div>
-        </ng-template>
       </ion-col>
-      <ion-col>
-        <div class=" fields" *ngIf="type < 2; else elseBlock2">
-          <ion-button color="dark " expand="full" >Pago de Nomina</ion-button>
+      <ng-template #elseBlock1>
+      <ion-col >
+        <div class=" fields">
+           <ion-button color="dark " expand="full" (click)="move2checkpay()">Consultar Pagos</ion-button>
+        </div>       
+     </ion-col>
+    </ng-template>
+    </ion-row>
+    <ion-row>
+
+      <ion-col *ngIf="type < 2; else elseBlock2">
+        <div class=" fields">
+           <ion-button color="dark " expand="full" >Pago de Nomina</ion-button>
         </div>
-        <ng-template #elseBlock2>
-         <!---- se agregara cuando se tengan nuevas funcionalidades 
-          <div>
+    </ion-col>
+    <ng-template #elseBlock2>
+      <ion-col >
+        <!---- se agregara cuando se tengan nuevas funcionalidades 
+          <div class=" fields">
             <ion-button expand="full">Vacio</ion-button> 
           </div> 
-        -->
-        </ng-template>
+        -->      
       </ion-col>
+    </ng-template>
+
     </ion-row>
     <ion-row>
       <ion-col>
@@ -54,13 +65,7 @@
          </ng-template>
       </ion-col>
     </ion-row>
-    <ion-row>
-      <ion-col>
-       <div class=" fields">
-        <ion-button  color="dark "expand="full" (click)="move2login()">Salir</ion-button>
-       </div>
-      </ion-col>
-    </ion-row>
+
   </ion-grid>
 
 </ion-content>
