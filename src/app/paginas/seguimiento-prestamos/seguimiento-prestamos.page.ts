@@ -26,7 +26,10 @@ export class SeguimientoPrestamosPage implements OnInit {
     console.log(this.id,this.user,this.type);
     this.loadPrestamos();
   }
+  atras(){
 
+    this.navCtrl.navigateForward(["/staff",this.id,this.user,this.type]);
+  }
   loadPrestamos(){
       this.apiService.getAllPrestamos(this.id).subscribe( response => {
         this.data = response;

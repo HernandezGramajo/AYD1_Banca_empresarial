@@ -44,26 +44,28 @@
       <ion-col >
         
           <div class=" fields">
-          <ion-button expand="full" (click)="move2solprestamo()">Solicitar Prestamo</ion-button> 
+          <ion-button color="dark "  expand="full" (click)="move2solprestamo()">Solicitar Prestamo</ion-button> 
           </div> 
               
 
       </ion-col>
     </ng-template>
-
     </ion-row>
     <ion-row>
-      <ion-col>
-        <div class=" fields" *ngIf="type < 2; else elseBlock3">
-          <!---->
+      <ion-col *ngIf="type < 2; else elseBlock3" >
+        <div class=" fields" >
+         
           <ion-button color="dark "  expand="full" (click)="move2staffcheckpay()">Consultar historial pagos</ion-button>
         </div>
-        <ng-template #elseBlock3>
-           <div>
-             <ion-button expand="full" (click)="move2checkloans()">Revisar Solicitudes</ion-button> 
-           </div>
-         </ng-template>
       </ion-col>
+        <ng-template #elseBlock3>
+          <ion-col>
+            <div class=" fields">
+              <ion-button color="dark " expand="full" (click)="move2checkloans()">Revisar Solicitudes</ion-button> 
+            </div>
+          </ion-col>
+        </ng-template>
+     
     </ion-row>
 
   </ion-grid>

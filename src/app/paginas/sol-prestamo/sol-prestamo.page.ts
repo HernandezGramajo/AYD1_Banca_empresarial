@@ -40,6 +40,10 @@ private datepip : DatePipe;
     
   }
 
+  atras(){
+
+    this.navCtrl.navigateForward(["/staff",this.id,this.user,this.type]);
+  }
   solicitarPrestamo(){
     this.popUpMensaje('Enviando Solicitud de Prestamo');
     this.error = false;
