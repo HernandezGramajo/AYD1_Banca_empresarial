@@ -25,7 +25,10 @@
       </div>
       <div *ngIf="temp.ESTADO==2">
         Rechazado
-      </div> 
+      </div>
+      <div *ngIf="temp.ESTADO==3">
+        Finalizado
+      </div>  
       <br>
       <ion-label color="tertiary"  position="floating">Fecha Solicitado</ion-label><br>
       {{temp.FECHA_GENERADO.replace('T00:00:00.000Z',"")}} 

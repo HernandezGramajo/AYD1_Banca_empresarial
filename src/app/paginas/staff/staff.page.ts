@@ -49,6 +49,12 @@ export class StaffPage implements OnInit {
     this.navCtrl.navigateForward(["/seguimiento-prestamos",this.id,this.user,this.type]);
   }
 
+  //moverse a administracion de prestamos
+
+  move2adminloans(){
+    this.navCtrl.navigateForward(["/manejo-prestamo",this.id,this.user,this.type]);
+  }
+
   //moverse a login
   move2login(){
     this.id =null

@@ -46,6 +46,11 @@ const routes: Routes = [
     path: 'seguimiento-prestamos/:id/:user/:type',
     loadChildren: () => import('./paginas/seguimiento-prestamos/seguimiento-prestamos.module').then( m => m.SeguimientoPrestamosPageModule)
   },
+  {
+    path: 'manejo-prestamo/:id/:user/:type',
+    loadChildren: () => import('./paginas/manejo-prestamo/manejo-prestamo.module').then( m => m.ManejoPrestamoPageModule)
+  },
+
 
 
   

@@ -168,5 +168,28 @@ export class ApiService {
     .pipe(/*retry(2),*/catchError(this.handleError)/**/)
   }
 
+  getPrestamo(itemID) : Observable<Prestamos>{
+    return this.http
+    .get<Prestamos>(this.base_path_4+"/"+itemID)
+    .pipe(/*retry(2),*/catchError(this.handleError)/**/)
+  }
+
+  getAllPrestamossinID() : Observable<Prestamos[]>{
+    return this.http
+    .get<Prestamos[]>(this.base_path_4)
+    .pipe(/*retry(2),*/catchError(this.handleError)/**/)
+  }
+
+  getNominasCliente(itemID) : Observable<Nominas[]>{
+    return this.http
+    .get<Nominas[]>(this.base_path_2+"?filter[where][id_user]="+itemID)
+    .pipe(/*retry(2),*/catchError(this.handleError)/**/)
+  }
+
+  updateItemPrestamo(itemID, item) : Observable<Prestamos>{
+    return this.http
+    .put<Prestamos>(this.base_path_4+"/"+itemID, JSON.stringify(item),this.httpOptions)
+    .pipe(/*retry(2),*/catchError(this.handleError)/**/)
+  }
 }
 
