@@ -16,7 +16,8 @@ export class ManejoPrestamoPage implements OnInit {
   private todosprest : Array<Prestamos> = [];
   private filtroprest : Array<Prestamos> = [];
   private listanomina : Array<Nominas> = [];
-  private filtronom : Array<Nominas> = [];
+  private nominapresto : Nominas;
+
   private promedio : Number
   private monto : Number;
   private activo : Number;
@@ -130,11 +131,24 @@ async comparePlanilla(itempestamo: Prestamos){
 
 
 async aprobar(){
+  var mydate = new Date();
   this.prestamo.ESTADO = 1;
   this.prestamo.ID_ADMINISTARDOR = this.id;
   this.popUpMensaje("prestamo aprobado");
   this.apiService.updateItemPrestamo(this.prestamo.ID, this.prestamo).subscribe();
   this.activo = 1;
+this.nominapresto = new Nominas();
+  this.nominapresto.id  = 0;
+  this.nominapresto.start_period = mydate;
+  this.nominapresto.end_period = mydate;
+  this.nominapresto.id_payment_type = 5;
+  this.nominapresto.id_user = this.prestamo.ID_EMPLEADO;
+  this.nominapresto.missed_days = 0;
+  this.nominapresto.payment_per_day = 0;
+  this.nominapresto.total_payment = this.prestamo.MONTO;
+  console.log("previo a nomina");
+  this.apiService.createItemNominas(this.nominapresto).subscribe();
+
 }
 
 async denegar(){
