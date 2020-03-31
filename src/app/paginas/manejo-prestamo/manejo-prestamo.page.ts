@@ -131,6 +131,7 @@ async comparePlanilla(itempestamo: Prestamos){
 
 async aprobar(){
   this.prestamo.ESTADO = 1;
+  this.prestamo.ID_ADMINISTARDOR = this.id;
   this.popUpMensaje("prestamo aprobado");
   this.apiService.updateItemPrestamo(this.prestamo.ID, this.prestamo).subscribe();
   this.activo = 1;
@@ -138,7 +139,7 @@ async aprobar(){
 
 async denegar(){
   this.prestamo.ESTADO = 2;
-  
+  this.prestamo.ID_ADMINISTARDOR = this.id;
   this.apiService.updateItemPrestamo(this.prestamo.ID, this.prestamo).subscribe();
   this.popUpMensaje("prestamo denegado");
   this.activo = 1;
