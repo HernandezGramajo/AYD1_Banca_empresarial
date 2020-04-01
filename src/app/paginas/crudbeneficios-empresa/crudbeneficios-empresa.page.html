@@ -1,0 +1,69 @@
+<!-- HEADER DE CRUD-->
+<ion-header>
+  <ion-toolbar>
+    <ion-title><b>Beneficios (enterprise)</b></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- CUERPO DE CRUD-->
+<ion-content padding class="background">
+  <div class="centrado">
+
+<!-- TITULO DE CRUD-->
+    <ion-button padding class="boton">CRUD Beneficios</ion-button>
+    <br>
+
+<!-- BOTON DE CARGA-->
+    <ion-button color="dark" icon-start>
+      <ion-select [(ngModel)]="codigoEmpleado">
+        <ion-select-option *ngFor="let codigoItem of dataUsuarios"> {{ codigoItem.id }}</ion-select-option>
+      </ion-select>
+    </ion-button>
+
+    <ion-button (click)="getData()" icon-end>  
+      <ion-icon name="add-outline"></ion-icon>
+      Cargar
+    </ion-button>
+    <br>
+    <br>
+
+<!-- INPUTS DE CRUD-->
+   <ion-card>
+    <ion-item>
+      <ion-icon name="caret-forward"></ion-icon>
+      <ion-input clear-input type="text" placeholder="identificación"></ion-input>
+    </ion-item>
+    <br>
+
+    <ion-item>
+      <ion-icon name="person"></ion-icon>
+      <ion-input clear-input type="text" placeholder="nombre"></ion-input>
+    </ion-item>
+    <br>
+
+    <ion-item>
+      <ion-icon name="scan-circle"></ion-icon>
+  <ion-textarea clearOnEdit="true" placeholder="cuerpo"></ion-textarea>
+  </ion-item>
+</ion-card>
+<br>
+
+<!-- BOTONES DE ACCION-->
+<ion-button (click)="getData()" icon-start>  
+  <ion-icon name="checkmark-circle"></ion-icon>
+  Crear
+</ion-button>
+
+<ion-button (click)="getData()" icon-end>  
+  <ion-icon name="close-circle"></ion-icon>
+  Eliminar
+</ion-button>
+
+<ion-button (click)="getData()" icon-end>  
+  <ion-icon name="pencil"></ion-icon>
+  Editar
+</ion-button>
+
+   </div>
+
+</ion-content>

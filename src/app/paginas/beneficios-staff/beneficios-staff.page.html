@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Empleado</ion-title>
+    <h2><b>Beneficios (staff)</b></h2>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="background">
+  <div class="centrado">
+
+    <!-- TITULO DE DESPLIEGUE DE BENEFICIOS-->
+        <ion-button padding class="boton">Beneficios para el staff</ion-button>
+        <br>
+    <!-- BOTON DE CARGA-->
+       <ion-button color="dark" icon-start>
+       <ion-select [(ngModel)]="codigoEmpleado">
+       <ion-select-option *ngFor="let codigoItem of dataUsuarios"> {{ codigoItem.id }}</ion-select-option>
+       </ion-select>
+       </ion-button>
+
+       <ion-button (click)="getData()" icon-end>  
+       <ion-icon name="add-outline"></ion-icon>
+         Cargar
+       </ion-button>
+       <br>
+       <br>
+
+       <ion-card>
+        <ion-item class="ion-activated">
+          <ion-textarea>lkaslkalskalsklasklasklsklasklaskalskalskalskalskalsklasklasklakss
+            kalskalskalskaslalskalskalskalskalskalskalskalsksl
+          </ion-textarea>
+        </ion-item>
+      
+        <ion-item class="ion-activated">
+          <ion-textarea>lkaslkalskalsklasklasklsklasklaskalskalskalskalskalsklasklasklakss
+            kalskalskalskaslalskalskalskalskalskalskalskalsksl
+          </ion-textarea>
+        </ion-item>     
+      </ion-card>
+       <!--<ion-grid>
+
+         <ion-row> 
+          <ion-col> POP OVER EXAMPLE</ion-col> 
+         </ion-row>
+
+         <ion-row>
+        <ion-col>
+        <ion-button expand = "block" color ="danger" (click)="CreatePopOver()">
+          OK
+        </ion-button>
+        </ion-col>
+         </ion-row>
+
+       </ion-grid> -->   
+       </div>
+</ion-content>
