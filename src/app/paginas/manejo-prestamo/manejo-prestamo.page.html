@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="dark">
+  <ion-toolbar  color="dark">
     <ion-icon   (click)="atras()" name="arrow-back" slot="start"></ion-icon>
     <ion-title class="titulo">Administracion de Prestamos</ion-title>
   </ion-toolbar>
@@ -7,13 +7,13 @@
 
 <ion-content padding class="background">
 <div class="centrado carta">
-  <ion-item>
+  <ion-item class ="fields" color="dark">
     <ion-label position="floating">Prestamos pendientes</ion-label>
     <ion-select [(ngModel)]="codigoPrest">
       <ion-select-option *ngFor="let codigoItem of filtroprest" value = "{{codigoItem.ID}}">ID: {{ codigoItem.ID }}, MONTO: {{ codigoItem.MONTO }}, CUOTAS: {{ codigoItem.CUOTAS }}, Estado: {{ codigoItem.ESTADO }}</ion-select-option>
     </ion-select>
   </ion-item>
-  <ion-button color="warning" (click)="checkPrestamo()">Cargar Datos del Prestamo</ion-button>
+  <ion-button color="dark" (click)="checkPrestamo()">Cargar Prestamo</ion-button>
   <br>
   <ng-container  *ngIf = "prestamo">
     <ion-item  color = "dark" class=" fields">
@@ -42,18 +42,23 @@
       <ion-label color="tertiary"  position="floating">Fecha Solicitado</ion-label><br>
       {{prestamo.FECHA_GENERADO.replace('T00:00:00.000Z',"")}} 
     </ion-item>
+    
+    
   </ng-container>
+
+  <ng-container  *ngIf = "prestamo && activo == 1">
+    <ion-button color="dark" (click)="reload()">Actualizar</ion-button>
+  </ng-container>
+  <ng-container  *ngIf = "prestamo && (promedio > monto) && activo == 0">
+    <ion-button color="dark" (click)="aprobar()">Aprobar </ion-button>
+  </ng-container>
+  <ng-container  *ngIf = "prestamo && activo == 0">
+    <ion-button color="dark" (click)="denegar()">Denegar </ion-button>
+    <ion-button color="dark" (click)="reload()">Actualizar</ion-button>
+  </ng-container>
+ 
 <br>
-<ng-container  *ngIf = "prestamo && activo == 1">
-  <ion-button color="dark" (click)="reload()">Volver a comenzar</ion-button>
-</ng-container>
-<ng-container  *ngIf = "prestamo && (promedio > monto) && activo == 0">
-  <ion-button color="dark" (click)="aprobar()">Aprobar Prestamo</ion-button>
-</ng-container>
-<ng-container  *ngIf = "prestamo && activo == 0">
-  <ion-button color="dark" (click)="denegar()">Denegar Prestamo</ion-button>
-  <ion-button color="dark" (click)="reload()">Volver a comenzar</ion-button>
-</ng-container>
+
 
 </div>
 </ion-content>

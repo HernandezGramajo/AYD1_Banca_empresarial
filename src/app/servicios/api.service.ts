@@ -158,7 +158,7 @@ export class ApiService {
 
   createItemPrestamo(item): Observable<Prestamos>{
     return this.http
-    .post<Prestamos>(this.base_path_3, JSON.stringify(item), this.httpOptions)
+    .post<Prestamos>(this.base_path_4, JSON.stringify(item), this.httpOptions)
     .pipe(/*retry(2),*/catchError(this.handleError)/**/)
   }
 
