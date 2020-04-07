@@ -1,18 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+
 import { NavController, } from '@ionic/angular';
 import {ActivatedRoute} from '@angular/router';
 import { ApiService } from '../../servicios/api.service';
-import { Prestamos } from '../../modelos/prestamos';
-
 @Component({
-  selector: 'app-seguimiento-prestamos',
-  templateUrl: './seguimiento-prestamos.page.html',
-  styleUrls: ['./seguimiento-prestamos.page.scss'],
+  selector: 'app-constancias-staff',
+  templateUrl: './constancias-staff.page.html',
+  styleUrls: ['./constancias-staff.page.scss'],
 })
-export class SeguimientoPrestamosPage implements OnInit {
+export class ConstanciasStaffPage implements OnInit {
 
-  private data : any;
- 
   id =null
   user =null
   type =null
@@ -23,19 +20,10 @@ export class SeguimientoPrestamosPage implements OnInit {
     this.id=this.activeRoute.snapshot.paramMap.get('id');
     this.user=this.activeRoute.snapshot.paramMap.get('user');
     this.type=this.activeRoute.snapshot.paramMap.get('type');
-    console.log(this.id,this.user,this.type);
-    this.loadPrestamos();
+   
   }
   atras(){
 
     this.navCtrl.navigateForward(["/staff",this.id,this.user,this.type]);
   }
-  loadPrestamos(){
-      this.apiService.getAllPrestamos(this.id).subscribe( response => {
-        this.data = response;
-      })
-  }
-
-
-
 }

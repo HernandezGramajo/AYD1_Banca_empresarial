@@ -50,6 +50,10 @@ const routes: Routes = [
     path: 'manejo-prestamo/:id/:user/:type',
     loadChildren: () => import('./paginas/manejo-prestamo/manejo-prestamo.module').then( m => m.ManejoPrestamoPageModule)
   },
+  {
+    path: 'constancias-staff/:id/:user/:type',
+    loadChildren: () => import('./paginas/constancias-staff/constancias-staff.module').then( m => m.ConstanciasStaffPageModule)
+  },
 
 
 
