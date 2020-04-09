@@ -50,6 +50,11 @@ const routes: Routes = [
     path: 'manejo-prestamo/:id/:user/:type',
     loadChildren: () => import('./paginas/manejo-prestamo/manejo-prestamo.module').then( m => m.ManejoPrestamoPageModule)
   },
+  {
+    path: 'sol-constancia/:id/:user/:type',
+    loadChildren: () => import('./paginas/sol-constancia/sol-constancia.module').then( m => m.SolConstanciaPageModule)
+  },
+
 
 
 
