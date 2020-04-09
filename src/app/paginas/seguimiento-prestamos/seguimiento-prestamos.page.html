@@ -59,10 +59,13 @@
         <ion-label color="tertiary"  position="floating">Razon propuesta</ion-label><br>
         {{temp.cuerpo_constancia}} 
         <ion-label color="tertiary"  position="floating">Constancia Solicitada</ion-label><br>
-        <div *ngIf="temp.tipoConstancia==0">
+        <div *ngIf="temp.tipoConstancia==1">
           Constancia Laboral
         </div>
-        <div *ngIf="temp.tipoConstancia==1">
+        <div *ngIf="temp.tipoConstancia==2">
+          Constancia de Ingresos
+        </div>
+        <div *ngIf="temp.tipoConstancia==3">
           Solicitud de Vacaciones
         </div>
         <ion-label color="tertiary"  position="floating">Estado de Solicitud</ion-label><br>
