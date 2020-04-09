@@ -13,12 +13,15 @@ import { Constancia } from 'src/app/modelos/constancia';
   styleUrls: ['./sol-constancia.page.scss'],
 })
 export class SolConstanciaPage implements OnInit {
-  private error : Boolean;
+  error : Boolean;
   private mydate : Date;
   data: Constancia;
   id =null
   user =null
   type =null
+  flagatras = 0;
+  flagreload = 0;
+  flagpop = 0;
   constructor(private apiService : ApiService,private activeRoute: ActivatedRoute, public navCtrl: NavController) { this.data = new Constancia();  }
 
   ngOnInit() {
@@ -30,7 +33,7 @@ export class SolConstanciaPage implements OnInit {
     
   }
   atras(){
-
+    this.flagatras=1;
     this.navCtrl.navigateForward(["/staff",this.id,this.user,this.type]);
   }
 
@@ -77,10 +80,12 @@ export class SolConstanciaPage implements OnInit {
     loading.present();
     
     document.body.appendChild(loading);
+    this.flagpop = 1;
   }
 
   async reload(){
     setTimeout(function(){ 
+      this.flagreload = 1;
       location.reload()
     }, 2000);
   }
