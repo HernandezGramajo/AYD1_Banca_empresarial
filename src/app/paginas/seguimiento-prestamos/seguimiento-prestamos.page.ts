@@ -11,7 +11,8 @@ import { Prestamos } from '../../modelos/prestamos';
 })
 export class SeguimientoPrestamosPage implements OnInit {
 
-  private data : any;
+  data : any;
+  dataOption : Number;
 
   id =null
   user =null
@@ -24,18 +25,48 @@ export class SeguimientoPrestamosPage implements OnInit {
     this.user=this.activeRoute.snapshot.paramMap.get('user');
     this.type=this.activeRoute.snapshot.paramMap.get('type');
     console.log(this.id,this.user,this.type);
-    this.loadPrestamos();
   }
-  atras(){
 
+  atras(){
     this.navCtrl.navigateForward(["/staff",this.id,this.user,this.type]);
   }
+
+  onChange(){
+    this.data = null;
+  }
+
+  cargarData(){
+    if(this.dataOption == 1){
+      this.loadPrestamos();
+    }else if(this.dataOption == 2){
+      this.loadConstancias();
+    }else{
+      this.popUpMensaje("Seleccione que tipo de solicitudes quiere revisar.");
+    }
+  }
+
   loadPrestamos(){
       this.apiService.getAllPrestamos(this.id).subscribe( response => {
         this.data = response;
       })
   }
 
+  loadConstancias(){
+    this.apiService.getAllConstancias(this.id).subscribe( response => {
+      this.data = response;
+    })
+  }
+
+
+
+  popUpMensaje(mensaje){
+    const loading = document.createElement('ion-loading');
+    loading.message = mensaje;
+    loading.duration = 1000;
+    loading.present();
+    
+    document.body.appendChild(loading);
+  }
 
 
 }
