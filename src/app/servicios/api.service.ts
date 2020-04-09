@@ -20,7 +20,7 @@ export class ApiService {
   base_path_3 = 'http://3.20.104.181:6099/api/tipoNominas';
   base_path_4 = 'http://3.20.104.181:5099/api/prestamos';
 
-  base_path_5 = 'http://3.20.104.181:1447/api/constancias';
+  base_path_5 = 'http://3.20.104.181:1447/api/constancia';
   
   constructor(private http: HttpClient) { }
 
