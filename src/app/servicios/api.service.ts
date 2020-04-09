@@ -6,6 +6,7 @@ import { retry, catchError } from 'rxjs/operators';
 import { Nominas } from '../modelos/nominas';
 import { Tipo_Nomina } from '../modelos/tipo_nomina';
 import { Prestamos } from '../modelos/prestamos';
+import { Constancia } from '../modelos/constancia';
 
 
 @Injectable({
@@ -18,6 +19,8 @@ export class ApiService {
   base_path_2 = 'http://3.20.104.181:7099/api/nominas';
   base_path_3 = 'http://3.20.104.181:6099/api/tipoNominas';
   base_path_4 = 'http://3.20.104.181:5099/api/prestamos';
+
+  base_path_5 = 'http://3.20.104.181:1447/api/constancias';
   
   constructor(private http: HttpClient) { }
 
@@ -190,6 +193,12 @@ export class ApiService {
     return this.http
     .put<Prestamos>(this.base_path_4+"/"+itemID, JSON.stringify(item),this.httpOptions)
     .pipe(/*retry(2),*/catchError(this.handleError)/**/)
+  }
+
+  getAllConstancias(itemID) : Observable<Constancia[]>{
+    return this.http
+    .get<Constancia[]>(this.base_path_5+"?filter[where][id_empleado]="+itemID)
+    .pipe(/*retry(2),*/catchError(this.handleError))
   }
 }
 
