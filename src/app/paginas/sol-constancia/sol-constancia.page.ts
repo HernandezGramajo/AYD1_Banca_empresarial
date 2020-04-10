@@ -29,6 +29,7 @@ export class SolConstanciaPage implements OnInit {
     this.id=this.activeRoute.snapshot.paramMap.get('id');
     this.user=this.activeRoute.snapshot.paramMap.get('user');
     this.type=this.activeRoute.snapshot.paramMap.get('type');
+    this.data.tipoConstancia = -1;
     console.log(this.id,this.user,this.type);
     
   }
@@ -37,35 +38,36 @@ export class SolConstanciaPage implements OnInit {
     this.navCtrl.navigateForward(["/staff",this.id,this.user,this.type]);
   }
 
-  solicitarconstancia(){
+  solicitarconstancia(dato : Constancia){
     this.popUpMensaje('Enviando Solicitud de Constancia');
     this.error = false;
-    this.checkFields("");
+    this.checkFields("", dato);
     if(this.error == false){
-      this.data.id_constancia = 0;
-      this.data.estado_constancia = 0;
-      this.data.id_empleado = this.id;
-      this.data.id_administrador = 2
+      dato.id_constancia = 0;
+      dato.estado_constancia = 0;
+      dato.id_empleado = this.id;
+      dato.id_administrador = 2
       this.mydate = new Date();
-      this.data.fecha_constancia = this.mydate.toISOString();
+      dato.fecha_constancia = this.mydate.toISOString();
+      dato = this.data;
       //this.popUpMensaje(this.data.CUOTAS);
       //AQUI DEBE DE IR EL SUBSCRIBE DE POST CONSTANCIA
       this.apiService.createItemConstancia(this.data).subscribe();
       console.log("fecha constancia: "+ this.data.fecha_constancia);
-      this.reload();
+
     }
   }
 
-  checkFields(mensajeDeError){
+  checkFields(mensajeDeError : any, dato : Constancia){
 	  
     //Anidar en mensajeDeError, todos los campos vacios
-    if(!this.data.tipoConstancia || this.data.tipoConstancia.toString().length == 0){
+    if(!dato.tipoConstancia || dato.tipoConstancia == -1){
       mensajeDeError = mensajeDeError + "Favor seleccionar el tipo de constancia a solicitar.<br>";
       this.error = true;
       this.popUpMensaje(mensajeDeError);
     }
 		
-		    if(!this.data.cuerpo_constancia||  this.data.cuerpo_constancia.length == 0){
+		    if(!dato.cuerpo_constancia || dato.cuerpo_constancia.length == 0){
       mensajeDeError = mensajeDeError + "Razon o motivo para la solicitud de constancia esta vacio.<br>";
       this.error = true;
       this.popUpMensaje(mensajeDeError);
@@ -84,9 +86,7 @@ export class SolConstanciaPage implements OnInit {
   }
 
   async reload(){
-    setTimeout(function(){ 
-      this.flagreload = 1;
-      location.reload()
-    }, 2000);
+    this.flagreload = 1;
+    location.reload();
   }
 }

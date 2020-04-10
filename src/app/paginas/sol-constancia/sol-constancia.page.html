@@ -21,6 +21,8 @@
       <ion-textarea rows="5" type="string" [(ngModel)]="data.cuerpo_constancia"></ion-textarea>
     </ion-item>
     <br>
-    <ion-button color="dark" (click)="solicitarconstancia()">Enviar Solicitud</ion-button>
+    <ion-button color="dark" (click)="solicitarconstancia(data)">Enviar Solicitud</ion-button>
+    <br>
+    <ion-button color="dark" (click)="reload()">Comenzar de nuevo</ion-button>
   </div>
 </ion-content>
