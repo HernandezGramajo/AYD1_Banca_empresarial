@@ -50,7 +50,7 @@ export class SolConstanciaPage implements OnInit {
       this.data.fecha_constancia = this.mydate.toISOString();
       //this.popUpMensaje(this.data.CUOTAS);
       //AQUI DEBE DE IR EL SUBSCRIBE DE POST CONSTANCIA
-      //this.apiService.createItemPrestamo(this.data).subscribe();
+      this.apiService.createItemConstancia(this.data).subscribe();
       console.log("fecha constancia: "+ this.data.fecha_constancia);
       this.reload();
     }

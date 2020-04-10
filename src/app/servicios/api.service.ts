@@ -200,5 +200,12 @@ export class ApiService {
     .get<Constancia[]>(this.base_path_5+"?filter[where][id_empleado]="+itemID)
     .pipe(/*retry(2),*/catchError(this.handleError))
   }
+
+  createItemConstancia(item): Observable<Constancia>{
+    return this.http
+    .post<Constancia>(this.base_path_5, JSON.stringify(item), this.httpOptions)
+    .pipe(/*retry(2),*/catchError(this.handleError)/**/)
+  }
+
 }
 
