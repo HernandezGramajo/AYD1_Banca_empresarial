@@ -75,8 +75,9 @@ export class StaffPage implements OnInit {
     this.navCtrl.navigateForward(["/sol-prestamo",this.id,this.user,this.type]);
   }
 
-  /*
-  mover_Consulta_Empresa(){
-    this.navCtrl.navigateForward(["/consulta-pagos-empresa",this.id,this.user,this.type]);
-  }*/
+  //moverse a solicitud de constancias
+  move2solconstancia(){
+    this.navCtrl.navigateForward(["/sol-constancia",this.id,this.user,this.type]);
+  }
+
 }

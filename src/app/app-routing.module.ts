@@ -51,8 +51,13 @@ const routes: Routes = [
     loadChildren: () => import('./paginas/manejo-prestamo/manejo-prestamo.module').then( m => m.ManejoPrestamoPageModule)
   },
   {
+
     path: 'constancias-staff/:id/:user/:type',
     loadChildren: () => import('./paginas/constancias-staff/constancias-staff.module').then( m => m.ConstanciasStaffPageModule)
+  },
+  {
+    path: 'sol-constancia/:id/:user/:type',
+    loadChildren: () => import('./paginas/sol-constancia/sol-constancia.module').then( m => m.SolConstanciaPageModule)
   },
 
 

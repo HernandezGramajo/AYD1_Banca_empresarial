@@ -6,36 +6,87 @@
 </ion-header>
 
 <ion-content  padding class="background">
-  <ng-container  *ngFor="let temp of data">
-    <ion-item  color = "dark" class=" fields">
-      <ion-label color="tertiary"  position="floating">Codigo de Solicitud</ion-label><br>
-      {{temp.ID}} 
-      <ion-label color="tertiary"  position="floating">Razon propuesta</ion-label><br>
-      {{temp.RAZON}} 
-      <ion-label color="tertiary"  position="floating">Monto Solicitado</ion-label><br>
-      {{temp.MONTO}} 
-      <ion-label color="tertiary"  position="floating">Cuotas</ion-label><br>
-      {{temp.CUOTAS}} 
-      <ion-label color="tertiary"  position="floating">Estado de Solicitud</ion-label><br>
-      <div *ngIf="temp.ESTADO==0">
-        Pendiente
-      </div>
-      <div *ngIf="temp.ESTADO==1">
-        Aprovado
-      </div>
-      <div *ngIf="temp.ESTADO==2">
-        Rechazado
-      </div>
-      <div *ngIf="temp.ESTADO==3">
-        Finalizado
-      </div>  
-      <br>
-      <ion-label color="tertiary"  position="floating">Fecha Solicitado</ion-label><br>
-      {{temp.FECHA_GENERADO.replace('T00:00:00.000Z',"")}} 
-    </ion-item>
-    
-
-  </ng-container>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item color="dark">
+          <ion-select [(ngModel)]="dataOption" (ionChange)="onChange()">
+            <ion-select-option value='1'>Prestamos</ion-select-option>
+            <ion-select-option value='2'>Constancias</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="cargarData()">Cargar</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div *ngIf="dataOption == 1" >
+    <ng-container *ngFor="let temp of data">
+      <ion-item  color = "dark" class=" fields">
+        <ion-label color="tertiary"  position="floating">Codigo de Solicitud</ion-label><br>
+        {{temp.ID}} 
+        <ion-label color="tertiary"  position="floating">Razon propuesta</ion-label><br>
+        {{temp.RAZON}} 
+        <ion-label color="tertiary"  position="floating">Monto Solicitado</ion-label><br>
+        {{temp.MONTO}} 
+        <ion-label color="tertiary"  position="floating">Cuotas</ion-label><br>
+        {{temp.CUOTAS}} 
+        <ion-label color="tertiary"  position="floating">Estado de Solicitud</ion-label><br>
+        <div *ngIf="temp.ESTADO==0">
+          Pendiente
+        </div>
+        <div *ngIf="temp.ESTADO==1">
+          Aprovado
+        </div>
+        <div *ngIf="temp.ESTADO==2">
+          Rechazado
+        </div>
+        <div *ngIf="temp.ESTADO==3">
+          Finalizado
+        </div>  
+        <br>
+        <ion-label color="tertiary"  position="floating">Fecha Solicitado</ion-label><br>
+        {{temp.FECHA_GENERADO.replace('T00:00:00.000Z',"")}} 
+      </ion-item>
+    </ng-container>
+  </div>
+  <div *ngIf="dataOption == 2">
+    <ng-container *ngFor="let temp of data">
+      <ion-item  color = "dark" class=" fields">
+        <ion-label color="tertiary"  position="floating">Codigo de Constancia</ion-label><br>
+        {{temp.id_constancia}} 
+        <ion-label color="tertiary"  position="floating">Razon propuesta</ion-label><br>
+        {{temp.cuerpo_constancia}} 
+        <ion-label color="tertiary"  position="floating">Constancia Solicitada</ion-label><br>
+        <div *ngIf="temp.tipoConstancia==1">
+          Constancia Laboral
+        </div>
+        <div *ngIf="temp.tipoConstancia==2">
+          Constancia de Ingresos
+        </div>
+        <div *ngIf="temp.tipoConstancia==3">
+          Solicitud de Vacaciones
+        </div>
+        <ion-label color="tertiary"  position="floating">Estado de Solicitud</ion-label><br>
+        <div *ngIf="temp.estado_constancia==0">
+          Pendiente
+        </div>
+        <div *ngIf="temp.estado_constancia==1">
+          Aprovado
+        </div>
+        <div *ngIf="temp.estado_constancia==2">
+          Rechazado
+        </div>
+        <div *ngIf="temp.estado_constancia==3">
+          Finalizado
+        </div>  
+        <br>
+        <ion-label color="tertiary"  position="floating">Fecha Solicitado</ion-label><br>
+        {{temp.fecha_constancia.replace('T'," - ").replace('Z',"")}} 
+      </ion-item>
+    </ng-container>
+  </div>
   <br>
   <br>
 </ion-content>
