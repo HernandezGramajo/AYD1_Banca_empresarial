@@ -15,8 +15,10 @@
 
 <!-- BOTON DE CARGA-->
     <ion-button color="dark" icon-start>
-      <ion-select [(ngModel)]="codigoEmpleado">
-        <ion-select-option *ngFor="let codigoItem of dataUsuarios"> {{ codigoItem.id }}</ion-select-option>
+      <ion-select [(ngModel)]="codigoBeneficio">
+        <ion-select-option *ngFor="let codigoItem of dataBeneficios"> 
+            {{ codigoItem.id_beneficio}}      
+        </ion-select-option>
       </ion-select>
     </ion-button>
 
@@ -31,39 +33,45 @@
    <ion-card>
     <ion-item>
       <ion-icon name="caret-forward"></ion-icon>
-      <ion-input clear-input type="text" placeholder="identificación"></ion-input>
+      <ion-input clear-input type="text"   id = "id" placeholder="identificación" [(ngModel)]="data.id_beneficio"></ion-input>
     </ion-item>
     <br>
 
     <ion-item>
       <ion-icon name="person"></ion-icon>
-      <ion-input clear-input type="text" placeholder="nombre"></ion-input>
+      <ion-input clear-input type="text"   id = "name"placeholder="nombre" [(ngModel)]="data.nombre_beneficio"></ion-input>
     </ion-item>
     <br>
 
     <ion-item>
       <ion-icon name="scan-circle"></ion-icon>
-  <ion-textarea clearOnEdit="true" placeholder="cuerpo"></ion-textarea>
-  </ion-item>
+  <ion-textarea clearOnEdit="true"  id = "desc" placeholder="cuerpo" [(ngModel)]="data.descripcion_beneficio"></ion-textarea>
+  
+</ion-item>
+
+
+  
 </ion-card>
 <br>
 
 <!-- BOTONES DE ACCION-->
-<ion-button (click)="getData()" icon-start>  
+<ion-button onclick="document.getElementById('id').value = '';
+                     document.getElementById('name').value = ''; 
+                     document.getElementById('desc').value = '';" (click)="createBeneficios()" icon-start>  
   <ion-icon name="checkmark-circle"></ion-icon>
   Crear
 </ion-button>
 
-<ion-button (click)="getData()" icon-end>  
+
+<ion-button (click)="deleteBeneficios()" icon-end>  
   <ion-icon name="close-circle"></ion-icon>
   Eliminar
 </ion-button>
 
-<ion-button (click)="getData()" icon-end>  
+<ion-button (click)="modifyBeneficios()" icon-end>  
   <ion-icon name="pencil"></ion-icon>
   Editar
 </ion-button>
-
    </div>
 
 </ion-content>

@@ -21,11 +21,15 @@ const routes: Routes = [
     loadChildren: () => import('./paginas/staff/staff.module').then( m => m.StaffPageModule)
   },
   {
-    path: 'beneficios-staff',
+    path: 'beneficios-staff/:id/:user/:type',
     loadChildren: () => import('./paginas/beneficios-staff/beneficios-staff.module').then( m => m.BeneficiosStaffPageModule)
   },
   {
-    path: 'crudbeneficios-empresa',
+    path: 'pago-nomina/:id/:user/:type',
+    loadChildren: () => import('./paginas/pago-nomina/pago-nomina.module').then( m => m.PagoNominaPageModule)
+  },
+  {
+    path: 'crudbeneficios-empresa/:id/:user/:type',
     loadChildren: () => import('./paginas/crudbeneficios-empresa/crudbeneficios-empresa.module').then( m => m.CrudbeneficiosEmpresaPageModule)
   },
   {

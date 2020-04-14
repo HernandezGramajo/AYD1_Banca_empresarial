@@ -1,5 +1,6 @@
 <ion-header>
   <ion-toolbar>
+    <ion-icon  (click)="returnMenu()" name="arrow-back" slot="start"></ion-icon>
     <ion-title>Empleado</ion-title>
     <h2><b>Beneficios (staff)</b></h2>
   </ion-toolbar>
@@ -13,8 +14,8 @@
         <br>
     <!-- BOTON DE CARGA-->
        <ion-button color="dark" icon-start>
-       <ion-select [(ngModel)]="codigoEmpleado">
-       <ion-select-option *ngFor="let codigoItem of dataUsuarios"> {{ codigoItem.id }}</ion-select-option>
+       <ion-select [(ngModel)]="codigoBeneficio">
+       <ion-select-option *ngFor="let codigoItem of dataBeneficios"> {{ codigoItem.id_beneficio}} - {{ codigoItem.nombre_beneficio}}</ion-select-option>
        </ion-select>
        </ion-button>
 
@@ -22,22 +23,19 @@
        <ion-icon name="add-outline"></ion-icon>
          Cargar
        </ion-button>
-       <br>
-       <br>
 
-       <ion-card>
+
         <ion-item class="ion-activated">
-          <ion-textarea>lkaslkalskalsklasklasklsklasklaskalskalskalskalskalsklasklasklakss
-            kalskalskalskaslalskalskalskalskalskalskalskalsksl
+          <ion-textarea clear-input type="text" placeholder="ID" [(ngModel)]="data.id_beneficio">
+
           </ion-textarea>
         </ion-item>
       
         <ion-item class="ion-activated">
-          <ion-textarea>lkaslkalskalsklasklasklsklasklaskalskalskalskalskalsklasklasklakss
-            kalskalskalskaslalskalskalskalskalskalskalskalsksl
+          <ion-textarea clear-input type="text" placeholder="Descripcion" [(ngModel)]="data.descripcion_beneficio">
           </ion-textarea>
         </ion-item>     
-      </ion-card>
+  
        <!--<ion-grid>
 
          <ion-row> 
