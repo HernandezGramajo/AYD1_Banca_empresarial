@@ -63,6 +63,8 @@ describe('BeneficiosStaffPage', () => {
 
   
 
+  
+
   describe('#loadBeneficios', () => {
     it('Should load Beneficios[] into dataBeneficios', () => {
       component.id = 1;
