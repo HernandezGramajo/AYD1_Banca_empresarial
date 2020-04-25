@@ -110,8 +110,8 @@ export class CrudusuariosPage implements OnInit {
   checkFields(mensajeDeError){
 	  
     //Anidar en mensajeDeError, todos los campos vacios
-    if(!this.data.id || this.data.id.toString().length == 0 || this.data.id != 0){
-      mensajeDeError = mensajeDeError + "ID vacio o debe ser 0.<br>";
+    if(!this.data.id || this.data.id.toString().length == 0){
+      mensajeDeError = mensajeDeError + "ID vacio.<br>";
       this.error = true;
       this.popUpMensaje(mensajeDeError);
     }

@@ -1,5 +1,6 @@
 <ion-header>
-  <ion-toolbar color="warning">
+  <ion-toolbar color="dark">
+    <ion-icon  (click)="move2login()" name="log-out" slot="start"></ion-icon>
     <ion-title class="titulo" *ngIf="type == 0">Menu Staff</ion-title>
     <ion-title class="titulo" *ngIf="type == 1">Menu Staff</ion-title>
     <ion-title class="titulo" *ngIf="type == 2">Menu Empleado</ion-title>
@@ -9,26 +10,88 @@
 <ion-content padding class="background">
 
 
-  <ion-grid>
+  <ion-grid class = "centrado">
     <ion-row>
       <ion-col>
-       <div>
-        <ion-button expand="full" (click)="move2info()">Informacion de usuario</ion-button>
+       <div class=" fields" >
+        <ion-button  color="dark " expand="full" (click)="move2info()">Informacion de usuario</ion-button>
         </div>
-      </ion-col>
-      <ion-col>
-        <div *ngIf="type < 2; else elseBlock">
-          <ion-button expand="full" (click)="move2crud()">Administrar Usuarios</ion-button>
-        </div>
-        <ng-template #elseBlock></ng-template>
       </ion-col>
     </ion-row>
+
     <ion-row>
-      <ion-col>
-       <div>
-        <ion-button expand="full" (click)="move2login()">Salir</ion-button>
-       </div>
+      <ion-col *ngIf="type < 2; else elseBlock1">
+          <div class=" fields">
+             <ion-button color="dark " expand="full" (click)="move2crud()">Administrar Usuarios</ion-button>
+          </div>
       </ion-col>
+      <ng-template #elseBlock1>
+      <ion-col >
+        <div class=" fields">
+           <ion-button color="dark " expand="full" (click)="move2checkpay()">Consultar Pagos</ion-button>
+        </div>       
+     </ion-col>
+    </ng-template>
+    </ion-row>
+    <ion-row>
+
+      <ion-col *ngIf="type < 2; else elseBlock2">
+        <div class=" fields">
+           <ion-button color="dark " expand="full"(click) = "move2staffpay()" >Pago de Nomina</ion-button>
+        </div>
+
+    </ion-col>
+    <ng-template #elseBlock2>
+      <ion-col >
+        
+          <div class=" fields">
+          <ion-button color="dark "  expand="full" (click)="move2solprestamo()">Solicitar Prestamo</ion-button> 
+          </div> 
+              
+
+      </ion-col>
+    </ng-template>
+    </ion-row>
+    <ion-row>
+      <ion-col *ngIf="type < 2; else elseBlock3" >
+        <div class=" fields" >
+         
+          <ion-button color="dark "  expand="full" (click)="move2staffcheckpay()">Consultar historial pagos</ion-button>
+        </div>
+      </ion-col>
+        <ng-template #elseBlock3>
+          <ion-col>
+            <div class=" fields">
+              <ion-button color="dark " expand="full" (click)="move2checkloans()">Revisar Solicitudes</ion-button> 
+            </div>
+          </ion-col>
+
+          <ion-col>
+            <div class=" fields">
+              <ion-button color="dark " expand="full" (click)="move2checkbenefits()">Beneficios Staff</ion-button> 
+            </div>
+          </ion-col>
+        </ng-template>
+
+
+     
+    </ion-row>
+    <ion-row>
+      <ion-col *ngIf="type < 2;" >
+        <div class=" fields" >
+         
+          <ion-button color="dark "  expand="full" (click)="move2adminloans()">Administrar Prestamos</ion-button>
+        </div>
+      </ion-col>    
+    </ion-row>
+
+    <ion-row>
+      <ion-col *ngIf="type < 2;" >
+        <div class=" fields" >
+         
+          <ion-button color="dark "  expand="full" (click)="move2adminbenefits()">Beneficios Empresa</ion-button>
+        </div>
+      </ion-col>    
     </ion-row>
   </ion-grid>
 

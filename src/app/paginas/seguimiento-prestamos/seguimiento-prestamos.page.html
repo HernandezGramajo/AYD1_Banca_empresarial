@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-icon   (click)="atras()" name="arrow-back" slot="start"></ion-icon>
+    <ion-title class="titulo">Seguimiento de Prestamos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  padding class="background">
+  <ng-container  *ngFor="let temp of data">
+    <ion-item  color = "dark" class=" fields">
+      <ion-label color="tertiary"  position="floating">Codigo de Solicitud</ion-label><br>
+      {{temp.ID}} 
+      <ion-label color="tertiary"  position="floating">Razon propuesta</ion-label><br>
+      {{temp.RAZON}} 
+      <ion-label color="tertiary"  position="floating">Monto Solicitado</ion-label><br>
+      {{temp.MONTO}} 
+      <ion-label color="tertiary"  position="floating">Cuotas</ion-label><br>
+      {{temp.CUOTAS}} 
+      <ion-label color="tertiary"  position="floating">Estado de Solicitud</ion-label><br>
+      <div *ngIf="temp.ESTADO==0">
+        Pendiente
+      </div>
+      <div *ngIf="temp.ESTADO==1">
+        Aprovado
+      </div>
+      <div *ngIf="temp.ESTADO==2">
+        Rechazado
+      </div>
+      <div *ngIf="temp.ESTADO==3">
+        Finalizado
+      </div>  
+      <br>
+      <ion-label color="tertiary"  position="floating">Fecha Solicitado</ion-label><br>
+      {{temp.FECHA_GENERADO.replace('T00:00:00.000Z',"")}} 
+    </ion-item>
+    
+
+  </ng-container>
+  <br>
+  <br>
+</ion-content>

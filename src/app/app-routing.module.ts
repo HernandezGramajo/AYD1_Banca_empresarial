@@ -20,6 +20,24 @@ const routes: Routes = [
     path: 'staff/:id/:user/:type',
     loadChildren: () => import('./paginas/staff/staff.module').then( m => m.StaffPageModule)
   },
+  {
+    path: 'beneficios-staff/:id/:user/:type',
+    loadChildren: () => import('./paginas/beneficios-staff/beneficios-staff.module').then( m => m.BeneficiosStaffPageModule)
+  },
+  {
+    path: 'pago-nomina/:id/:user/:type',
+    loadChildren: () => import('./paginas/pago-nomina/pago-nomina.module').then( m => m.PagoNominaPageModule)
+  },
+  {
+    path: 'crudbeneficios-empresa/:id/:user/:type',
+    loadChildren: () => import('./paginas/crudbeneficios-empresa/crudbeneficios-empresa.module').then( m => m.CrudbeneficiosEmpresaPageModule)
+  },
+  {
+    path: 'popover',
+    loadChildren: () => import('./paginas/popover/popover.module').then( m => m.PopoverPageModule)
+  },
+
+
 
 ];
 
