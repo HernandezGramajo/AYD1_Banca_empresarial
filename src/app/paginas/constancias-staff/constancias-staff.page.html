@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-icon   (click)="atras()" name="arrow-back" slot="start"></ion-icon>
+    <ion-title class="titulo">Revision de Constancias</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  class="background">
+  <ng-container  button *ngFor = "let const of (constancias | async)">
+  <ion-item  color = "dark" class=" fields" *ngIf="const.estado_constancia==0">
+   
+      <ion-label  color="tertiary"  >Constancia No.{{const.id_constancia}}</ion-label>
+      <ion-label  color="tertiary"  position="floating">Nombre</ion-label><br>
+      <ng-container *ngFor="let Usuario of (result_user | async)">
+        <ng-container  *ngIf="const.id_empleado==Usuario.id">
+          {{Usuario.first_name}} {{Usuario.last_name}}
+        </ng-container >
+      </ng-container> 
+      <ion-label color="tertiary"  position="floating">Tipo de constancia</ion-label><br>
+      <ng-container  *ngIf="const.tipoConstancia==1">
+        Laboral
+      </ng-container >
+      <ng-container  *ngIf="const.tipoConstancia==2">
+        Ingresos
+      </ng-container >
+      <ng-container  *ngIf="const.tipoConstancia==3">
+        Vacaciones
+      </ng-container >
+      <ion-label color="tertiary"  position="floating">Fecha de Solicitud</ion-label><br>
+      {{const.fecha_constancia.replace('T00:00:00.000Z',"")}}
+      <ion-label color="tertiary"  position="floating">Motivo</ion-label><br>
+      {{const.cuerpo_constancia}} <br><br>
+      <div>
+        <ion-button [id]="const.id_constancia" color="danger"  (click)="Aceptar(const)">Aceptar</ion-button>
+        <ion-button  [id]="const.id_constancia" color="danger"  (click)="Rechazar(const)">Rechazar</ion-button>
+      </div>
+      <br>
+    </ion-item>  
+  </ng-container>
+</ion-content>

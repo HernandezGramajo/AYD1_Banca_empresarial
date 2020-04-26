@@ -11,8 +11,10 @@ import { Prestamos } from '../../modelos/prestamos';
 })
 export class SeguimientoPrestamosPage implements OnInit {
 
+
   data : any;
   dataOption : Number;
+
 
   id =null
   user =null

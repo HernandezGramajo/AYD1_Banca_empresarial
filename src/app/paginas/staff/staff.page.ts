@@ -55,6 +55,12 @@ export class StaffPage implements OnInit {
     this.navCtrl.navigateForward(["/manejo-prestamo",this.id,this.user,this.type]);
   }
 
+ // mover a constancias 
+ move2constanceloans(){
+  this.navCtrl.navigateForward(["/constancias-staff",this.id,this.user,this.type]);
+}
+
+
   //moverse a login
   move2login(){
     this.id =null
