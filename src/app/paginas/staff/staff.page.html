@@ -18,6 +18,7 @@
         </div>
       </ion-col>
     </ion-row>
+
     <ion-row>
       <ion-col *ngIf="type < 2; else elseBlock1">
           <div class=" fields">
@@ -36,7 +37,7 @@
 
       <ion-col *ngIf="type < 2; else elseBlock2">
         <div class=" fields">
-           <ion-button color="dark " expand="full" >Pago de Nomina</ion-button>
+           <ion-button color="dark " expand="full"(click) = "move2staffpay()" >Pago de Nomina</ion-button>
         </div>
 
     </ion-col>
@@ -64,7 +65,15 @@
               <ion-button color="dark " expand="full" (click)="move2checkloans()">Revisar Solicitudes de Prestamo</ion-button> 
             </div>
           </ion-col>
+
+          <ion-col>
+            <div class=" fields">
+              <ion-button color="dark " expand="full" (click)="move2checkbenefits()">Beneficios Staff</ion-button> 
+            </div>
+          </ion-col>
         </ng-template>
+
+
      
     </ion-row>
     <ion-row>
@@ -91,6 +100,14 @@
       </ion-col>    
     </ion-row>
 
+    <ion-row>
+      <ion-col *ngIf="type < 2;" >
+        <div class=" fields" >
+         
+          <ion-button color="dark "  expand="full" (click)="move2adminbenefits()">Beneficios Empresa</ion-button>
+        </div>
+      </ion-col>    
+    </ion-row>
   </ion-grid>
 
 </ion-content>

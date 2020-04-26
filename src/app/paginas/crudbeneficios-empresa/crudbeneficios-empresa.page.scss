@@ -1,0 +1,50 @@
+
+    ion-content.background{
+        --background: url(/assets/img/fondo_purpura.png) 0 0/100% 100% no-repeat;
+    }
+  
+      .centrado{
+        text-align: center;
+      }
+  
+      .fields {
+        margin-top: 15px;
+        margin-bottom: 15px;
+  
+        max-width: 70% !important;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .boton {
+      margin:auto;
+      display:block;
+  }
+
+  .alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+  ion-input {
+    --placeholder-color: green;     /* placeholder text color */
+    color: var(--ion-color-primary); /* input text color to primary */
+}
+  
+
+

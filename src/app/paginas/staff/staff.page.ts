@@ -37,7 +37,7 @@ export class StaffPage implements OnInit {
   }
   //moverse a STAFF - Pago de nomina
   move2staffpay(){
-    this.navCtrl.navigateForward(["/#",this.id,this.user,this.type]);
+    this.navCtrl.navigateForward(["/pago-nomina",this.id,this.user,this.type]);
   }
   // moverse a STAFF - consultar historial de pagos
   move2staffcheckpay(){
@@ -47,6 +47,14 @@ export class StaffPage implements OnInit {
   // moverse a seguimiento de prestamos
   move2checkloans(){
     this.navCtrl.navigateForward(["/seguimiento-prestamos",this.id,this.user,this.type]);
+  }
+
+  move2checkbenefits(){
+    this.navCtrl.navigateForward(["/beneficios-staff",this.id,this.user,this.type]);
+  }
+
+  move2adminbenefits(){
+    this.navCtrl.navigateForward(["/crudbeneficios-empresa",this.id,this.user,this.type]);
   }
 
   //moverse a administracion de prestamos

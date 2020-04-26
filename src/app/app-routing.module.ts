@@ -12,11 +12,6 @@ const routes: Routes = [
     path: 'crudusuarios/:id/:user/:type',
     loadChildren: () => import('./paginas/crudusuarios/crudusuarios.module').then( m => m.CrudusuariosPageModule)
   },
-    {
-    path: 'pago_nomina/:id/:user/:type',
-    loadChildren: () => import('./paginas/pago-nomina/pago-nomina.module').then( m => m.PagoNominaPageModule)
-  },
-  
   {
     path: 'info-usuario/:id/:user/:type',
     loadChildren: () => import('./paginas/info-usuario/info-usuario.module').then( m => m.InfoUsuarioPageModule)
@@ -26,25 +21,20 @@ const routes: Routes = [
     loadChildren: () => import('./paginas/staff/staff.module').then( m => m.StaffPageModule)
   },
   {
-
-    path: 'reportes-usuario/:id/:user/:type',
-    loadChildren: () => import('./paginas/reportes-usuario/reportes-usuario.module').then( m => m.ReportesUsuarioPageModule)
-  },
- {
-    path: 'consulta-pagos-empresa/:id/:user/:type',
-    loadChildren: () => import('./paginas/consulta-pagos-empresa/consulta-pagos-empresa.module').then( m => m.ConsultaPagosEmpresaPageModule)
+    path: 'beneficios-staff/:id/:user/:type',
+    loadChildren: () => import('./paginas/beneficios-staff/beneficios-staff.module').then( m => m.BeneficiosStaffPageModule)
   },
   {
     path: 'pago-nomina/:id/:user/:type',
     loadChildren: () => import('./paginas/pago-nomina/pago-nomina.module').then( m => m.PagoNominaPageModule)
   },
   {
-    path: 'sol-prestamo/:id/:user/:type',
-    loadChildren: () => import('./paginas/sol-prestamo/sol-prestamo.module').then( m => m.SolPrestamoPageModule)
+    path: 'crudbeneficios-empresa/:id/:user/:type',
+    loadChildren: () => import('./paginas/crudbeneficios-empresa/crudbeneficios-empresa.module').then( m => m.CrudbeneficiosEmpresaPageModule)
   },
   {
-    path: 'seguimiento-prestamos/:id/:user/:type',
-    loadChildren: () => import('./paginas/seguimiento-prestamos/seguimiento-prestamos.module').then( m => m.SeguimientoPrestamosPageModule)
+    path: 'popover',
+    loadChildren: () => import('./paginas/popover/popover.module').then( m => m.PopoverPageModule)
   },
   {
     path: 'manejo-prestamo/:id/:user/:type',
@@ -62,7 +52,8 @@ const routes: Routes = [
 
 
 
-  
+
+
 
 ];
 

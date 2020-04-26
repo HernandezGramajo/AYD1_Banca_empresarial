@@ -4,6 +4,7 @@ import { Usuarios } from '../modelos/usuarios';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { Nominas } from '../modelos/nominas';
+import { Beneficios } from '../modelos/beneficios';
 import { Tipo_Nomina } from '../modelos/tipo_nomina';
 import { Prestamos } from '../modelos/prestamos';
 import { Constancia } from '../modelos/constancia';
@@ -19,9 +20,10 @@ export class ApiService {
   base_path_2 = 'http://3.20.104.181:7099/api/nominas';
   base_path_3 = 'http://3.20.104.181:6099/api/tipoNominas';
   base_path_4 = 'http://3.20.104.181:5099/api/prestamos';
+  base_path_6 = 'http://3.20.104.181:1447/api/constancia';
+  base_path_5 = 'http://3.20.104.181:3103/api/beneficios';
 
-  base_path_5 = 'http://3.20.104.181:1447/api/constancia';
-  
+ 
   constructor(private http: HttpClient) { }
 
   //Opciones
@@ -197,15 +199,48 @@ export class ApiService {
 
   getAllConstancias(itemID) : Observable<Constancia[]>{
     return this.http
-    .get<Constancia[]>(this.base_path_5+"?filter[where][id_empleado]="+itemID)
+    .get<Constancia[]>(this.base_path_6+"?filter[where][id_empleado]="+itemID)
     .pipe(/*retry(2),*/catchError(this.handleError))
   }
 
   createItemConstancia(item): Observable<Constancia>{
     return this.http
-    .post<Constancia>(this.base_path_5, JSON.stringify(item), this.httpOptions)
+    .post<Constancia>(this.base_path_6, JSON.stringify(item), this.httpOptions)
+    .pipe(/*retry(2),*/catchError(this.handleError)/**/)
+  }
+
+
+
+  ///////////////////////////////BASE PATH 5 : BENEFICIOS////////////////////////////////////////////
+  getAllBeneficios() : Observable<Beneficios>{
+    return this.http
+    .get<Beneficios>(this.base_path_5)
+    .pipe(/*retry(2),*/catchError(this.handleError)/**/)
+  }
+
+  
+  getItemBeneficios(itemID) : Observable<Beneficios>{
+    return this.http
+    .get<Beneficios>(this.base_path_5+"/"+itemID)
+    .pipe(/*retry(2),*/catchError(this.handleError)/**/)
+  }
+
+  createItemBeneficios(item): Observable<Beneficios>{
+    return this.http
+    .post<Beneficios>(this.base_path_5, JSON.stringify(item), this.httpOptions)
+    .pipe(/*retry(2),*/catchError(this.handleError)/**/)
+  }
+
+  updateItemBeneficios(itemID, item) : Observable<Beneficios>{
+    return this.http
+    .put<Beneficios>(this.base_path_5+"/"+itemID, JSON.stringify(item),this.httpOptions)
+    .pipe(/*retry(2),*/catchError(this.handleError)/**/)
+  }
+  deleteItemBeneficios(itemID, item) : Observable<Beneficios>{
+    return this.http
+    .delete<Beneficios>(this.base_path_5+"/"+itemID)
     .pipe(/*retry(2),*/catchError(this.handleError)/**/)
   }
 
 }
-
+///////////////////////////////BASE PATH 5 : BENEFICIOS////////////////////////////////////////////
