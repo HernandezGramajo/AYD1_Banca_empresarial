@@ -44,9 +44,10 @@ export class ConstanciasStaffPage implements OnInit {
       "cuerpo_constancia": constancia_aceptada.cuerpo_constancia,
       "fecha_constancia": constancia_aceptada.fecha_constancia
 
-    }
+    } 
    await this.serv.update_constancia(constancia_aceptada.id_constancia,json).toPromise();
    this.constancias = await this.serv.Obtener_constancias();
+  
   }
   async Rechazar(constancia_rechazada){ // 2 rechazado
     const json ={
