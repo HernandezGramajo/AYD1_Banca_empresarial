@@ -21,6 +21,10 @@ const routes: Routes = [
     loadChildren: () => import('./paginas/staff/staff.module').then( m => m.StaffPageModule)
   },
   {
+    path: 'reportes-usuario/:id/:user/:type',
+    loadChildren: () => import('./paginas/reportes-usuario/reportes-usuario.module').then( m => m.ReportesUsuarioPageModule)
+  },
+  {
     path: 'beneficios-staff/:id/:user/:type',
     loadChildren: () => import('./paginas/beneficios-staff/beneficios-staff.module').then( m => m.BeneficiosStaffPageModule)
   },
@@ -36,6 +40,13 @@ const routes: Routes = [
     path: 'popover',
     loadChildren: () => import('./paginas/popover/popover.module').then( m => m.PopoverPageModule)
   },
+  {
+    path: 'log-cambios/:id/:user/:type',
+    loadChildren: () => import('./paginas/log-cambios/log-cambios.module').then( m => m.LogCambiosPageModule)
+  },
+
+
+
 
 
 

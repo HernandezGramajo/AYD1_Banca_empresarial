@@ -7,6 +7,7 @@ import { Nominas } from '../modelos/nominas';
 import { Beneficios } from '../modelos/beneficios';
 import { Tipo_Nomina } from '../modelos/tipo_nomina';
 import { Prestamos } from '../modelos/prestamos';
+import { LogCambios } from '../modelos/log-cambios';
 
 
 @Injectable({
@@ -20,7 +21,7 @@ export class ApiService {
   base_path_3 = 'http://3.20.104.181:6099/api/tipoNominas';
   base_path_4 = 'http://3.20.104.181:5099/api/prestamos';
   base_path_5 = 'http://3.20.104.181:3103/api/beneficios';
-
+  base_path_6 = 'http://3.20.104.181:2004/api/bitacoras';
   
   constructor(private http: HttpClient) { }
 
@@ -226,5 +227,83 @@ export class ApiService {
     .pipe(/*retry(2),*/catchError(this.handleError)/**/)
   }
 
+///////////////////////////////BASE PATH 6 : BITACORA/LOG DE CAMBIOS////////////////////////////////////////////
+
+  getAllLog() : Observable<LogCambios>{
+    return this.http
+    .get<LogCambios>(this.base_path_6)
+    .pipe(/*retry(2),*/catchError(this.handleError)/**/)
+  }
+  
+  
+  getItemLog(itemID) : Observable<LogCambios>{
+    return this.http
+    .get<LogCambios>(this.base_path_6+"/"+itemID)
+    .pipe(/*retry(2),*/catchError(this.handleError)/**/)
+  }
+  
+  
+  getItemLogAnio(itemID, itemANIO : number) : Observable<LogCambios>{
+    var anioMin = (Number(itemANIO) - 1);
+    console.log(anioMin);
+    var anioMax = (Number(itemANIO) + 1);
+    console.log(anioMax);
+    return this.http
+    .get<LogCambios>(this.base_path_6+"?filter[where][and][0][id_user]="+itemID+"&filter[where][and][1][start_period][gt]="+(anioMin)+"-12-31&filter")
+  }
+  
+  getItemLogMesAnio(itemID, itemMES : number, itemANIO : number) : Observable<LogCambios>{
+    if(itemMES == 1){
+      var anioMin = (Number(itemANIO) - 1);
+      console.log(anioMin);
+      var maximo = (Number(itemMES) + 1);
+      console.log(maximo);
+      return this.http
+      .get<LogCambios>(this.base_path_6+"?filter[where][and][0][id_user]="+itemID+"&filter[where][and][1][start_period][gt]="+(anioMin)+"-12-31&filter[where][and][2][end_period][lt]="+(itemANIO)+"-"+(maximo)+"-01")
+      .pipe(/*retry(2),*/catchError(this.handleError)/**/)
+    }
+
+
+    else if(itemMES == 3){
+      var minimo = (Number(itemMES) - 1);
+      console.log(minimo);
+      var maximo = (Number(itemMES) + 1);
+      console.log(maximo);
+      return this.http
+      .get<LogCambios>(this.base_path_6+"?filter[where][and][0][id_user]="+itemID+"&filter[where][and][1][start_period][gt]="+(itemANIO)+"-"+(minimo)+"-29&filter[where][and][2][end_period][lt]="+(itemANIO)+"-"+(maximo)+"-01")
+      .pipe(/*retry(2),*/catchError(this.handleError)/**/)
+    }
+
+
+    else if(itemMES == 12){
+      var minimo = (Number(itemMES) - 1);
+      console.log(minimo);
+      var anioMax = (Number(itemANIO) + 1);
+      console.log(anioMax);
+      return this.http
+      .get<LogCambios>(this.base_path_6+"?filter[where][and][0][id_user]="+itemID+"&filter[where][and][1][start_period][gt]="+(itemANIO)+"-"+(minimo)+"-31&filter[where][and][2][end_period][lt]="+(anioMax)+"-01-01")
+      .pipe(/*retry(2),*/catchError(this.handleError)/**/)
+    }
+
+
+    else{
+      var minimo = (Number(itemMES) - 1);
+      console.log(minimo);
+      var maximo = (Number(itemMES) + 1);
+      console.log(maximo);
+      return this.http
+      .get<LogCambios>(this.base_path_6+"?filter[where][and][0][id_user]="+itemID+"&filter[where][and][1][start_period][gt]="+(itemANIO)+"-"+(minimo)+"-31&filter[where][and][2][end_period][lt]="+(itemANIO)+"-"+(maximo)+"-01")
+      .pipe(/*retry(2),*/catchError(this.handleError)/**/)
+    }
+
+
+  }
+  
+///////////////////////////////BASE PATH 6 : BITACORA/LOG DE CAMBIOS////////////////////////////////////////////
+
 }
-///////////////////////////////BASE PATH 5 : BENEFICIOS////////////////////////////////////////////
+
+
+
+
+

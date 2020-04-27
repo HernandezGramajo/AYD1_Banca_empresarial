@@ -1,0 +1,86 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-icon   (click)="returnMenu()" name="arrow-back" slot="start"></ion-icon>
+    <ion-title  class="titulo">Log de Cambios</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding class="background centrado">
+  <div class="centrado carta">
+    <ion-row>
+      <ion-col width-33>
+        <ion-item color ="dark" >
+          <ion-label  position="floating">Mes</ion-label>
+          <ion-select  [(ngModel)]="mesConsulta">
+          
+          <ion-select-option value="00">Todos</ion-select-option>
+          <ion-select-option value="01">Enero</ion-select-option>
+          <ion-select-option value="02">Febrero</ion-select-option>
+          <ion-select-option value="03">Marzo</ion-select-option>
+          <ion-select-option value="04">Abril</ion-select-option>
+          <ion-select-option value="05">Mayo</ion-select-option>
+          <ion-select-option value="06">Junio</ion-select-option>
+          <ion-select-option value="07">Julio</ion-select-option>
+          <ion-select-option value="08">Agosto</ion-select-option>
+          <ion-select-option value="09">Septiembre</ion-select-option>
+          <ion-select-option value="10">Octubre</ion-select-option>
+          <ion-select-option value="11">Noviembre</ion-select-option>
+          <ion-select-option value="12">Diciembre</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+
+      <ion-col width-33>
+        <ion-item color ="dark" >
+          <ion-label position="floating">Año</ion-label>
+          <ion-select [(ngModel)]="anioConsulta">
+            <ion-select-option value="00">Todos</ion-select-option>
+            <ion-select-option>2020</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+
+      <ion-col width-33>
+        <ion-item color ="dark" >
+          <ion-label position="floating">Admin</ion-label>
+          <ion-select [(ngModel)]="userConsulta">
+            <ion-select-option value="00">Todos</ion-select-option>
+            <ion-select-option *ngFor="let codigoItem of dataUsuarios"> 
+              {{ codigoItem.id}} -   {{ codigoItem.user_name}}    
+          </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+
+
+      <ion-col width-33>
+        <ion-button color="dark" (click)="getLogs()">Consultar</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-item   color = "dark" *ngFor="let codigoItem of dataLog" class="centrado fields">
+      <ion-row>
+       
+        <ion-col width-33>
+          <ion-label color="tertiary"  position="floating">Inicio Periodo</ion-label><br>
+         {{codigoItem.start_period.replace('T00:00:00.000Z',"")}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col width-33>
+          <ion-label color="tertiary"  position="floating">Fin Periodo</ion-label><br>
+          {{codigoItem.end_period.replace('T00:00:00.000Z',"")}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col width-50>
+          <ion-label color="tertiary"  position="floating">Faltas</ion-label><br>
+          {{codigoItem.missed_days}}
+        </ion-col>
+       
+      </ion-row>
+
+    </ion-item>
+    
+  </div>
+</ion-content>
