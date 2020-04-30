@@ -50,7 +50,7 @@ export class CrudbeneficiosEmpresaPage implements OnInit {
 
   getData(){
     //Cargar de la API la informacion de un usuario en particular
-    //this.popUpMensaje('Cargando Usuario: '+this.codigoBeneficio);
+    //this.presentAlert('Cargando Usuario: '+this.codigoBeneficio);
     this.apiService.getItemBeneficios(this.codigoBeneficio).subscribe(response => {
       this.data = response;
   });
@@ -60,7 +60,7 @@ export class CrudbeneficiosEmpresaPage implements OnInit {
   createBeneficios(){
    //Crear usuario
     //Error si ya existe o no puede ser creado
-    this.popUpMensaje('Creando Beneficio');
+    this.presentAlert('Creando Beneficio');
     this.error = false;
     this.checkFields("");
     this.flagcreate = 1; 
@@ -71,7 +71,7 @@ export class CrudbeneficiosEmpresaPage implements OnInit {
   modifyBeneficios(){
     //Modificar usuario seleccionado
     //Error si no se ha cargado uno
-    this.popUpMensaje('Modificando Beneficio');
+    this.presentAlert('Modificando Beneficio');
     this.error = false;
     if(this.error == false){
       this.flagcreate = 1; 
@@ -122,38 +122,38 @@ export class CrudbeneficiosEmpresaPage implements OnInit {
     }).then(alert=> alert.present());
 
   }
+  async presentAlert(mensaje) {
+    let alert = await this.alertCtrl.create({
+      backdropDismiss:true,
+     
+      message:mensaje,
 
+      
+    });
+    alert.present();
+  }
   checkFields(mensajeDeError){
 	  
     //Anidar en mensajeDeError, todos los campos vacios
     if(!this.data.id_beneficio || this.data.id_beneficio.toString().length == 0){
       mensajeDeError = mensajeDeError + "ID vacio.<br>";
       this.error = true;
-      this.popUpMensaje(mensajeDeError);
+      this.presentAlert(mensajeDeError);
     }
 	
 	    if(!this.data.nombre_beneficio || this.data.nombre_beneficio.length == 0){
       mensajeDeError = mensajeDeError + "Nombre de Beneficio vacio.<br>";
       this.error = true;
-      this.popUpMensaje(mensajeDeError);
+      this.presentAlert(mensajeDeError);
     }
 	
 		    if(!this.data.descripcion_beneficio||  this.data.descripcion_beneficio.length == 0){
       mensajeDeError = mensajeDeError + "Descripción de Beneficio vacio.<br>";
       this.error = true;
-      this.popUpMensaje(mensajeDeError);
+      this.presentAlert(mensajeDeError);
     }
   }
 
-  popUpMensaje(mensaje){
-    
-    const loading = document.createElement('ion-loading');
-    loading.message = mensaje;
-    loading.duration = 1000;
-    loading.present();  
-    document.body.appendChild(loading);
-    this.flagpop = 1;
-  }
   returnMenu(){
     this.navCtrl.navigateForward(["/staff",this.id,this.user,this.type]);
   }

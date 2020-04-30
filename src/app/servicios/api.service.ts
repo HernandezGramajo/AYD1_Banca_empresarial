@@ -249,7 +249,7 @@ export class ApiService {
     var anioMax = (Number(itemANIO) + 1);
     console.log(anioMax);
     return this.http
-    .get<LogCambios>(this.base_path_6+"?filter[where][and][0][id_user]="+itemID+"&filter[where][and][1][start_period][gt]="+(anioMin)+"-12-31&filter")
+    .get<LogCambios>(this.base_path_6+"?filter[where][id_entrada]="+itemID)
   }
   
   getItemLogMesAnio(itemID, itemMES : number, itemANIO : number) : Observable<LogCambios>{
@@ -259,7 +259,7 @@ export class ApiService {
       var maximo = (Number(itemMES) + 1);
       console.log(maximo);
       return this.http
-      .get<LogCambios>(this.base_path_6+"?filter[where][and][0][id_user]="+itemID+"&filter[where][and][1][start_period][gt]="+(anioMin)+"-12-31&filter[where][and][2][end_period][lt]="+(itemANIO)+"-"+(maximo)+"-01")
+      .get<LogCambios>(this.base_path_6+"?filter[where][id_entrada]="+itemID)
       .pipe(/*retry(2),*/catchError(this.handleError)/**/)
     }
 
@@ -270,7 +270,7 @@ export class ApiService {
       var maximo = (Number(itemMES) + 1);
       console.log(maximo);
       return this.http
-      .get<LogCambios>(this.base_path_6+"?filter[where][and][0][id_user]="+itemID+"&filter[where][and][1][start_period][gt]="+(itemANIO)+"-"+(minimo)+"-29&filter[where][and][2][end_period][lt]="+(itemANIO)+"-"+(maximo)+"-01")
+      .get<LogCambios>(this.base_path_6+"?filter[where][id_entrada]="+itemID)
       .pipe(/*retry(2),*/catchError(this.handleError)/**/)
     }
 
@@ -281,7 +281,7 @@ export class ApiService {
       var anioMax = (Number(itemANIO) + 1);
       console.log(anioMax);
       return this.http
-      .get<LogCambios>(this.base_path_6+"?filter[where][and][0][id_user]="+itemID+"&filter[where][and][1][start_period][gt]="+(itemANIO)+"-"+(minimo)+"-31&filter[where][and][2][end_period][lt]="+(anioMax)+"-01-01")
+      .get<LogCambios>(this.base_path_6+"?filter[where][id_entrada]="+itemID)
       .pipe(/*retry(2),*/catchError(this.handleError)/**/)
     }
 
@@ -292,7 +292,7 @@ export class ApiService {
       var maximo = (Number(itemMES) + 1);
       console.log(maximo);
       return this.http
-      .get<LogCambios>(this.base_path_6+"?filter[where][and][0][id_user]="+itemID+"&filter[where][and][1][start_period][gt]="+(itemANIO)+"-"+(minimo)+"-31&filter[where][and][2][end_period][lt]="+(itemANIO)+"-"+(maximo)+"-01")
+      .get<LogCambios>(this.base_path_6+"?filter[where][id_entrada]="+itemID)
       .pipe(/*retry(2),*/catchError(this.handleError)/**/)
     }
 

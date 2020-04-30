@@ -4,7 +4,8 @@ import {ActivatedRoute} from '@angular/router';
 import { Usuarios } from '../../modelos/usuarios';
 import { ApiService } from '../../servicios/api.service';
 import { Nominas } from '../../modelos/nominas';
-
+import { AlertController } from '@ionic/angular';
+import { __await } from 'tslib';
 @Component({
   selector: 'app-pago-nomina',
   templateUrl: './pago-nomina.page.html',
@@ -29,7 +30,7 @@ export class PagoNominaPage implements OnInit {
   user =null
   type =null
   
-  constructor(private apiService : ApiService,private activeRoute: ActivatedRoute, public navCtrl: NavController) { this.data = new Nominas(); }
+  constructor(private alertCtrl: AlertController,private apiService : ApiService,private activeRoute: ActivatedRoute, public navCtrl: NavController) { this.data = new Nominas(); }
 
   ngOnInit() {
     this.id=this.activeRoute.snapshot.paramMap.get('id');
@@ -56,7 +57,7 @@ export class PagoNominaPage implements OnInit {
 
   getData(){
     //Cargar de la API la informacion de un usuario en particular
-    //this.popUpMensaje('Cargando Usuario: '+this.codigoNomina);
+    //this.presentAlert('Cargando Usuario: '+this.codigoNomina);
     this.apiService.getItemNomina(this.codigoNomina).subscribe( response => {
         this.data = response;
     });
@@ -65,7 +66,7 @@ export class PagoNominaPage implements OnInit {
   createNomina(){
     //Crear Nomina
     //Error si ya existe o no puede ser creada
-    this.popUpMensaje('Creando Nomina');
+    this.presentAlert('Creando Nomina');
     this.error = false;
     this.checkFields("");
     this.data.id = 0;
@@ -80,7 +81,7 @@ export class PagoNominaPage implements OnInit {
   modifyNomina(){
     //Modificar usuario seleccionado
     //Error si no se ha cargado uno
-    this.popUpMensaje('Modificando Nomina');
+    this.presentAlert('Modificando Nomina');
     this.error = false;
     this.checkFields("");
     this.data.id_user = this.codigoUsuario;
@@ -98,63 +99,68 @@ export class PagoNominaPage implements OnInit {
     if(!this.data.id || this.data.id.toString().length == 0){
       mensajeDeError = mensajeDeError + "ID vacio<br>";
       this.error = true;
-      this.popUpMensaje(mensajeDeError);
+      this.presentAlert(mensajeDeError);
     }
 	
       if(!this.data.start_period || this.data.start_period.toString().length == 0){
       mensajeDeError = mensajeDeError + "Periodo Final Vacio.<br>";
       this.error = true;
-      this.popUpMensaje(mensajeDeError);
+      this.presentAlert(mensajeDeError);
     }
 	
 		    if(!this.data.end_period || this.data.end_period.toString().length == 0){
       mensajeDeError = mensajeDeError + "Periodo Final Vacio.<br>";
       this.error = true;
-      this.popUpMensaje(mensajeDeError);
+      this.presentAlert(mensajeDeError);
     }
 
 
     if(!this.data.missed_days || this.data.missed_days.toString().length == 0){
       mensajeDeError = mensajeDeError + "Dias Perdidos Vacio.<br>";
       this.error = true;
-      this.popUpMensaje(mensajeDeError);
+      this.presentAlert(mensajeDeError);
     }
 	
 	    if(!this.data.payment_per_day || this.data.payment_per_day.toString().length == 0){
       mensajeDeError = mensajeDeError + "Dias Pagados Vacio.<br>";
       this.error = true;
-      this.popUpMensaje(mensajeDeError);
+      this.presentAlert(mensajeDeError);
     }
 	
     if(!this.data.total_payment || this.data.total_payment.toString().length == 0){
       mensajeDeError = mensajeDeError + "Pago Total Vacio.<br>";
       this.error = true;
-      this.popUpMensaje(mensajeDeError);
+      this.presentAlert(mensajeDeError);
     }
 	
     if(!this.data.id_user || this.data.id_user.toString().length == 0){
       mensajeDeError = mensajeDeError + "Usuario a Pagar Vacio.<br>";
       this.error = true;
-      this.popUpMensaje(mensajeDeError);
+      this.presentAlert(mensajeDeError);
     }
 	
     if(!this.data.id_payment_type || this.data.id_payment_type.toString().length == 0){
       mensajeDeError = mensajeDeError + "Tipo de Pago Vacio.<br>";
       this.error = true;
-      this.popUpMensaje(mensajeDeError);
+      this.presentAlert(mensajeDeError);
     }
 	
 	
   }
 
-  popUpMensaje(mensaje){
-    const loading = document.createElement('ion-loading');
-    loading.message = mensaje;
-    loading.duration = 1000;
-    loading.present();
-    
-    document.body.appendChild(loading);
+
+  async presentAlert(mensaje) {
+    let alert = await this.alertCtrl.create({
+      backdropDismiss:true,
+     
+      message:mensaje,
+
+      
+    });
+    alert.present();
   }
+  
+
 
   returnMenu(){
     this.navCtrl.navigateForward(["/staff",this.id,this.user,this.type]);

@@ -41,6 +41,10 @@ const routes: Routes = [
     loadChildren: () => import('./paginas/popover/popover.module').then( m => m.PopoverPageModule)
   },
   {
+    path: 'consulta-pagos-empresa/:id/:user/:type',
+    loadChildren: () => import('./paginas/consulta-pagos-empresa/consulta-pagos-empresa.module').then( m => m.ConsultaPagosEmpresaPageModule)
+  },
+  {
     path: 'log-cambios/:id/:user/:type',
     loadChildren: () => import('./paginas/log-cambios/log-cambios.module').then( m => m.LogCambiosPageModule)
   },

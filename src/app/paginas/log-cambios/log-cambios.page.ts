@@ -4,20 +4,26 @@ import {ActivatedRoute} from '@angular/router';
 import { LogCambios } from '../../modelos/log-cambios';
 import { ApiService } from '../../servicios/api.service';
 import { AlertController } from '@ionic/angular';
-
+import { __await } from 'tslib';
 @Component({
   selector: 'app-log-cambios',
   templateUrl: './log-cambios.page.html',
   styleUrls: ['./log-cambios.page.scss'],
 })
 export class LogCambiosPage implements OnInit {
-
   private dataUsuarios : any;
   private dataLogs : any;
   private codigoUsuario : Number;
   private mesConsulta : number;
   private anioConsulta : number;
   private userConsulta : number;
+  showMore = true;
+  errorMessage: string;
+  page = 1;
+  perPage = 0;
+  totalData = 0;
+  totalPage = 0;
+  users: string[];
 
   id =null
   user =null
@@ -35,56 +41,20 @@ export class LogCambiosPage implements OnInit {
   }
 
   getLogs(){
-    var tipoConsulta = 0;
-    if( (!this.mesConsulta || this.mesConsulta.toString().length == 0) &&
-        (!this.anioConsulta || this.anioConsulta.toString().length == 0) &&
-        (!this.userConsulta || this.userConsulta.toString().length == 0)){
-      //Sin Mes, Sin Año, Sin Usuario
-      this.dataLogs = null
-      this.apiService.getItemLog(this.id).subscribe( response => {
-        this.dataLogs = response;
-      });
-
-    }
-    
-    else if
-    ( (!this.mesConsulta || this.mesConsulta.toString().length == 0) &&
-      (this.anioConsulta || this.anioConsulta.toString().length > 0) &&
-      (this.userConsulta || this.userConsulta.toString().length > 0) ){
-      //Sin Mes, Con Año, Con Usuario
-      this.dataLogs = null
-      this.apiService.getItemLogAnio(this.userConsulta, this.anioConsulta).subscribe( response => {
-        this.dataLogs = response;
-      });
-      console.log(this.anioConsulta)
-
-    }
-    
-    else if
-    ( (this.mesConsulta || this.mesConsulta.toString().length > 0) &&
-      (!this.anioConsulta || this.anioConsulta.toString().length == 0) &&
-      (!this.userConsulta || this.userConsulta.toString().length == 0)){
-      //Con Mes, Sin Año, Sin Usuario
-      this.dataUsuarios = null
-      this.popUpMensaje("ERROR: Si selecciona un mes, por favor, seleccione un año tambien.");
-    }
-    
-    else{
-      //Vienen los tres
-      this.dataUsuarios = null
-      this.apiService.getItemLogMesAnio(this.userConsulta,this.mesConsulta,this.anioConsulta).subscribe( response => {
-        this.dataUsuarios = response;
-      });
-    }
+    this.apiService.getAllLog().subscribe( response => {
+      this.dataLogs = response;
+    })
   }
 
-  popUpMensaje(mensaje){
-    const loading = document.createElement('ion-loading');
-    loading.message = mensaje;
-    loading.duration = 1000;
-    loading.present();
-    
-    document.body.appendChild(loading);
+  async presentAlert(mensaje) {
+    let alert = await this.alertCtrl.create({
+      backdropDismiss:true,
+     
+      message:mensaje,
+
+      
+    });
+    alert.present();
   }
   returnMenu(){
     this.navCtrl.navigateForward(["/staff",this.id,this.user,this.type]);
@@ -101,10 +71,34 @@ export class LogCambiosPage implements OnInit {
 
   getData(){
     //Cargar de la API la informacion de un usuario en particular
-    //this.popUpMensaje('Cargando Usuario: '+this.codigoBeneficio);
+    //this.presentAlert('Cargando Usuario: '+this.codigoBeneficio);
     this.apiService.getItem(this.codigoUsuario).subscribe(response => {
       this.dataUsuarios = response;
   });
   
   }
+
+
+  doInfinite(infiniteScroll) {
+    this.page = this.page+1;
+    setTimeout(() => {
+      this.apiService.getAll()
+         .subscribe(
+           res => {
+             this.dataLogs = res;
+             this.perPage = this.dataLogs.per_page;
+             this.totalData = this.dataLogs.total;
+             this.totalPage = this.dataLogs.total_pages;
+             for(let i=0; i<this.dataLogs.data.length; i++) {
+               this.users.push(this.dataLogs.data[i]);
+             }
+           },
+           error =>  this.errorMessage = <any>error);
+
+      console.log('Async operation has ended');
+      infiniteScroll.complete();
+    }, 1000);
+  }
+
+
 }

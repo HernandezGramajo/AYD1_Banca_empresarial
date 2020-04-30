@@ -49,17 +49,17 @@ describe('CrudbeneficiosEmpresaPage', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('#popUpMessage', ()=>{
-    it('should not call popUpMessage because a system error', ()=>{
+  describe('#presentAlert', ()=>{
+    it('should not call presentAlert because a system error', ()=>{
      let mensaje = null;
-      component.popUpMensaje(mensaje);
-      expect(component.popUpMensaje(mensaje)).toBeUndefined();
+      component.presentAlert(mensaje);
+      expect(component.presentAlert(mensaje)).toBeUndefined();
     });
-    it('should call popUpMessage as planned', ()=>{
+    it('should call presentAlert as planned', ()=>{
       let mensaje = "un mensaje";
-      component.popUpMensaje(mensaje);
+      component.presentAlert(mensaje);
       expect(component.flagpop).toEqual(1);
-      expect(component.popUpMensaje(mensaje)).toBeUndefined();
+      expect(component.presentAlert(mensaje)).toBeUndefined();
     });
   });
 
