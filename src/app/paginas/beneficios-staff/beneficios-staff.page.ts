@@ -3,7 +3,8 @@ import { NavController, } from '@ionic/angular';
 import {ActivatedRoute} from '@angular/router';
 import { Beneficios } from '../../modelos/beneficios';
 import { ApiService } from '../../servicios/api.service';
-
+import { AlertController } from '@ionic/angular';
+import { __await } from 'tslib';
 /*import {PopoverController} from '@ionic/angular';
 import {PopoverPage} from '../popover/popover.page'*/
 @Component({
@@ -26,7 +27,7 @@ export class BeneficiosStaffPage {
   public flagpop = 0;
   public flagatras = 0;
   public flagcreate = 0;
-  constructor(private apiService : ApiService,private activeRoute: ActivatedRoute, public navCtrl: NavController) 
+  constructor(private alertCtrl: AlertController,private apiService : ApiService,private activeRoute: ActivatedRoute, public navCtrl: NavController) 
   { this.data = new Beneficios(); }
 
   ngOnInit() {
@@ -53,13 +54,16 @@ export class BeneficiosStaffPage {
     });
   }
 
-  popUpMensaje(mensaje){
-    const loading = document.createElement('ion-loading');
-    loading.message = mensaje;
-    loading.duration = 1000;
-    loading.present();  
-    document.body.appendChild(loading);
-    this.flagpop = 1;
+
+  async presentAlert(mensaje) {
+    let alert = await this.alertCtrl.create({
+      backdropDismiss:true,
+     
+      message:mensaje,
+
+      
+    });
+    alert.present();
   }
   returnMenu(){
     this.navCtrl.navigateForward(["/staff",this.id,this.user,this.type]);

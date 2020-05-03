@@ -77,6 +77,12 @@ export class StaffPage implements OnInit {
     this.navCtrl.navigateForward(["/sol-prestamo",this.id,this.user,this.type]);
   }
 
+  
+  //moverse a solicitud de prestamos
+
+  move2log_cambios(){
+    this.navCtrl.navigateForward(["/log-cambios",this.id,this.user,this.type]);
+  }
   /*
   mover_Consulta_Empresa(){
     this.navCtrl.navigateForward(["/consulta-pagos-empresa",this.id,this.user,this.type]);

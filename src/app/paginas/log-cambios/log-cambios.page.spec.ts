@@ -2,28 +2,27 @@ import { async, ComponentFixture, TestBed, getTestBed, fakeAsync } from '@angula
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { IonicModule, NavController } from '@ionic/angular';
-
+import { LogCambios } from '../../modelos/log-cambios';
 import { RouterTestingModule } from '@angular/router/testing';
 import { convertToParamMap,ActivatedRoute, Router } from '@angular/router';
 
 import { ApiService } from '../../servicios/api.service';
 import { Observable,of } from 'rxjs';
 
-import { Beneficios } from '../../modelos/beneficios';
+import { LogCambiosPage } from './log-cambios.page';
 
-import { BeneficiosStaffPage } from './beneficios-staff.page';
-
-describe('BeneficiosStaffPage', () => {
-  let component: BeneficiosStaffPage;
-  let fixture: ComponentFixture<BeneficiosStaffPage>;
+describe('LogCambiosPage', () => {
+  let component: LogCambiosPage;
+  let fixture: ComponentFixture<LogCambiosPage>;
   let injector : TestBed;
   let service : ApiService;
   let httpMock : HttpTestingController;
   let router : Router;
   let navCtrl : NavController;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BeneficiosStaffPage ],
+      declarations: [ LogCambiosPage ],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
       imports: [
         IonicModule.forRoot(),
@@ -38,7 +37,7 @@ describe('BeneficiosStaffPage', () => {
     httpMock = injector.get(HttpTestingController);
     router = injector.get(Router);
 
-    fixture = TestBed.createComponent(BeneficiosStaffPage);
+    fixture = TestBed.createComponent(LogCambiosPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
@@ -47,34 +46,17 @@ describe('BeneficiosStaffPage', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('#presentAlert', ()=>{
-    it('should not call presentAlert because a system error', ()=>{
-     let mensaje = null;
-      component.presentAlert(mensaje);
-      expect(component.presentAlert(mensaje)).toBeUndefined();
-    });
-    it('should call presentAlert as planned', ()=>{
-      let mensaje = "un mensaje";
-      component.presentAlert(mensaje);
-      expect(component.flagpop).toEqual(1);
-      expect(component.presentAlert(mensaje)).toBeUndefined();
-    });
-  });
-
-  
-
-  
-
-  describe('#loadBeneficios', () => {
+  describe('#getLogs', () => {
     it('Should load Beneficios[] into dataBeneficios', () => {
       component.id = 1;
-      var res : Beneficios;
+      var res : LogCambios;
 
-      spyOn(service,'getItemBeneficios').and.returnValue(of(res))
+      spyOn(service,'getAllLog').and.returnValue(of(res))
 
-      expect(component.loadBeneficios()).toBeUndefined();
+      expect(component.loadUsuarios()).toBeUndefined();
     });
 
   });
+
 
 });
