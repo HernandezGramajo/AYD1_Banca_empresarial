@@ -45,6 +45,18 @@ const routes: Routes = [
     loadChildren: () => import('./paginas/consulta-pagos-empresa/consulta-pagos-empresa.module').then( m => m.ConsultaPagosEmpresaPageModule)
   },
   {
+    path: 'manejo-prestamo/:id/:user/:type',
+    loadChildren: () => import('./paginas/manejo-prestamo/manejo-prestamo.module').then( m => m.ManejoPrestamoPageModule)
+  },
+  {
+    path: 'sol-prestamo/:id/:user/:type',
+    loadChildren: () => import('./paginas/sol-prestamo/sol-prestamo.module').then( m => m.SolPrestamoPageModule)
+  },
+  {
+    path: 'seguimiento-prestamos/:id/:user/:type',
+    loadChildren: () => import('./paginas/seguimiento-prestamos/seguimiento-prestamos.module').then( m => m.SeguimientoPrestamosPageModule)
+  },
+  {
     path: 'log-cambios/:id/:user/:type',
     loadChildren: () => import('./paginas/log-cambios/log-cambios.module').then( m => m.LogCambiosPageModule)
   },
